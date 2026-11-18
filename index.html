@@ -123,11 +123,71 @@ main.pg{page:pg;padding:0}
 <nav id="nav"></nav>
 <main id="v"></main>
 <script>
-const K="gestclasse_v2";
+(()=>{
+const LS=localStorage,SS=sessionStorage,enc=new TextEncoder();
+const U=()=>{try{return JSON.parse(LS.getItem("mc_users"))||[]}catch(e){return[]}};
+const setU=a=>LS.setItem("mc_users",JSON.stringify(a));
+const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b)));
+const unb=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const norm=s=>String(s||"").trim().toLowerCase();
+const salt=()=>b64(crypto.getRandomValues(new Uint8Array(16)));
+const keyFor=u=>u.admin?"gestclasse_v2":"gestclasse_v2_u_"+u.id;
+async function hash(pw,sl){
+ if(window.crypto&&crypto.subtle){const k=await crypto.subtle.importKey("raw",enc.encode(pw),"PBKDF2",false,["deriveBits"]);return b64(await crypto.subtle.deriveBits({name:"PBKDF2",salt:unb(sl),iterations:150000,hash:"SHA-256"},k,256))}
+ let a=0xdeadbeef,b=0x41c6ce57;const s=sl+pw;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}
+ a=Math.imul(a^(a>>>16),2246822507)^Math.imul(b^(b>>>13),3266489909);b=Math.imul(b^(b>>>16),2246822507)^Math.imul(a^(a>>>13),3266489909);return"f"+(4294967296*(2097151&b)+(a>>>0)).toString(16)}
+const newUser=async(name,pw,admin)=>{const sl=salt();return{id:Math.random().toString(36).slice(2,10),name:name.trim(),salt:sl,hash:await hash(pw,sl),admin:!!admin}};
+const S="width:100%;box-sizing:border-box;padding:10px;font-size:16px;border:1px solid var(--bd);border-radius:8px;background:var(--card);color:var(--tx);margin:4px 0 10px";
+function screen(h){let o=document.getElementById("mc_lock");if(!o){o=document.createElement("div");o.id="mc_lock";o.style.cssText="position:fixed;inset:0;z-index:99999;background:var(--bg);color:var(--tx);display:flex;align-items:center;justify-content:center;padding:16px;font-family:system-ui,sans-serif;overflow:auto";document.body.appendChild(o)}
+ o.innerHTML='<div style="background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px;width:100%;max-width:340px"><h2 style="margin:0 0 6px">📚 Gestion de classe</h2>'+h+'</div>';return o}
+function login(){
+ const first=U().length===0;
+ const o=screen(first?'<p style="color:var(--mu);margin:0 0 12px">Première utilisation : créez le compte principal (administrateur).</p><label>Identifiant</label><input id="mc_n" style="'+S+'" autocomplete="username"><label>Mot de passe (6 caractères min.)</label><input id="mc_p" type="password" style="'+S+'" autocomplete="new-password"><label>Confirmer le mot de passe</label><input id="mc_p2" type="password" style="'+S+'" autocomplete="new-password"><div id="mc_e" style="color:var(--wa);min-height:20px;margin-bottom:6px"></div><button class="btn" id="mc_go" style="width:100%">Créer le compte</button>'
+ :'<p style="color:var(--mu);margin:0 0 12px">Connectez-vous pour continuer.</p><label>Identifiant</label><input id="mc_n" style="'+S+'" autocomplete="username"><label>Mot de passe</label><input id="mc_p" type="password" style="'+S+'" autocomplete="current-password"><label style="display:block;margin-bottom:10px"><input type="checkbox" id="mc_sh"> Afficher le mot de passe</label><div id="mc_e" style="color:var(--wa);min-height:20px;margin-bottom:6px"></div><button class="btn" id="mc_go" style="width:100%">Se connecter</button>');
+ const $=i=>o.querySelector("#"+i),err=m=>$("mc_e").textContent=m;
+ if($("mc_sh"))$("mc_sh").onchange=e=>$("mc_p").type=e.target.checked?"text":"password";
+ const go=async()=>{
+  const n=$("mc_n").value.trim(),p=$("mc_p").value;if(!n||!p)return err("Remplissez les deux champs.");
+  if(first){if(p.length<6)return err("Mot de passe trop court (6 min.).");if(p!==$("mc_p2").value)return err("Les mots de passe ne correspondent pas.");
+   const u=await newUser(n,p,true);setU([u]);SS.setItem("mc_cur",u.id);return location.reload()}
+  const w=+LS.getItem("mc_wait")||0;if(Date.now()<w)return err("Trop d'essais. Réessayez dans "+Math.ceil((w-Date.now())/1000)+" s.");
+  const u=U().find(x=>norm(x.name)===norm(n));
+  if(u&&await hash(p,u.salt)===u.hash){LS.removeItem("mc_fail");SS.setItem("mc_cur",u.id);return location.reload()}
+  const f=(+LS.getItem("mc_fail")||0)+1;LS.setItem("mc_fail",f);if(f>=5){LS.setItem("mc_wait",Date.now()+30000);LS.setItem("mc_fail",0)}
+  err("Identifiant ou mot de passe incorrect.")};
+ $("mc_go").onclick=go;o.addEventListener("keydown",e=>{if(e.key==="Enter")go()});$("mc_n").focus()}
+const me=U().find(x=>x.id===SS.getItem("mc_cur"));
+if(me){window.__K=keyFor(me);window.__ME=me}else{window.__LOCK=1;login()}
+// carte « Compte » dans l'onglet Informations
+function card(){const m=window.__ME,us=U();let h='<div class="card"><h2>Compte</h2><p class="mu">Connecté : <b>'+esc(m.name)+'</b>'+(m.admin?' (administrateur)':'')+'</p><div class="row"><button class="btn s" id="mc_chg">Changer mon mot de passe</button><button class="btn s" id="mc_out">Se déconnecter</button></div>';
+ if(m.admin){h+='<h3 style="margin:14px 0 6px">Enseignants</h3>';const o=us.filter(x=>!x.admin);
+  h+=o.length?o.map(x=>'<div class="row" style="align-items:center"><span style="flex:1">'+esc(x.name)+'</span><button class="btn s" data-mcrs="'+x.id+'">Nouveau mot de passe</button><button class="btn s" data-mcdl="'+x.id+'">Supprimer</button></div>').join(""):'<p class="mu">Aucun autre enseignant.</p>';
+  h+='<div class="row"><input id="mc_nn" placeholder="Identifiant" size=12 autocomplete="off"><input id="mc_np" placeholder="Mot de passe" size=12 autocomplete="off"><button class="btn" id="mc_add">Ajouter</button></div>'}
+ return h+'</div>'}
+const fill=()=>{const c=document.getElementById("mc_acc");if(c&&!c.firstChild&&window.__ME)c.innerHTML=card()};
+const refill=()=>{const c=document.getElementById("mc_acc");if(c)c.innerHTML=card()};
+new MutationObserver(fill).observe(document.documentElement,{childList:true,subtree:true});
+document.addEventListener("click",async e=>{const t=e.target.closest("button");if(!t||!window.__ME)return;const m=window.__ME;
+ if(t.id==="mc_out"){SS.removeItem("mc_cur");return location.reload()}
+ if(t.id==="mc_chg"){const o=prompt("Mot de passe actuel :");if(o===null)return;const us=U(),u=us.find(x=>x.id===m.id);if(await hash(o,u.salt)!==u.hash)return alert("Mot de passe actuel incorrect.");
+  const n=prompt("Nouveau mot de passe (6 caractères min.) :");if(n===null)return;if(n.length<6)return alert("Trop court.");u.salt=salt();u.hash=await hash(n,u.salt);setU(us);return alert("Mot de passe modifié.")}
+ if(!m.admin)return;
+ if(t.id==="mc_add"){const n=document.getElementById("mc_nn").value.trim(),p=document.getElementById("mc_np").value;if(!n||p.length<6)return alert("Identifiant requis et mot de passe de 6 caractères minimum.");
+  const us=U();if(us.some(x=>norm(x.name)===norm(n)))return alert("Cet identifiant existe déjà.");us.push(await newUser(n,p,false));setU(us);return refill()}
+ if(t.dataset.mcrs){const n=prompt("Nouveau mot de passe pour cet enseignant (6 caractères min.) :");if(n===null)return;if(n.length<6)return alert("Trop court.");const us=U(),u=us.find(x=>x.id===t.dataset.mcrs);u.salt=salt();u.hash=await hash(n,u.salt);setU(us);return alert("Mot de passe réinitialisé.")}
+ if(t.dataset.mcdl){const us=U(),u=us.find(x=>x.id===t.dataset.mcdl);if(!u||!confirm("Supprimer le compte « "+u.name+" » ET toutes ses données (élèves, notes) sur cet appareil ?"))return;LS.removeItem(keyFor(u));setU(us.filter(x=>x.id!==u.id));return refill()}
+});
+})();
+</script>
+<script>
+if(window.__LOCK)throw new Error("verrouillé");
+const K=window.__K||"gestclasse_v2";
 const DEF={info:{ecole:"École Dialacoto 1",classe:"CM1",annee:"2026/2027",maitre:"MATAR DIEYE",ia:"TAMBACOUNDA",ief:"TAMBACOUNDA"},
 mat:[{n:"Français",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"Mathématiques",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"DM",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"EDD",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"Arabe",p:[{l:"",m:10}]},{n:"Arts plastiques",p:[{l:"",m:10}]}],
 el:[],notes:{},abs:{}};
-let D;try{D=JSON.parse(localStorage.getItem(K));if(!D){const o=JSON.parse(localStorage.getItem("gestclasse_v1")||"null");D=o?{...DEF,info:o.info,el:o.el,abs:o.abs||{}}:DEF}}catch(e){D=DEF}
+let D;try{D=JSON.parse(localStorage.getItem(K));if(!D){const o=K==="gestclasse_v2"?JSON.parse(localStorage.getItem("gestclasse_v1")||"null"):null;D=o?{...DEF,info:o.info,el:o.el,abs:o.abs||{}}:DEF}}catch(e){D=DEF}
+if(window.__ME&&!window.__ME.admin&&!localStorage.getItem(K))D={...D,info:{...D.info,maitre:window.__ME.name}};
 const nsx=s=>{s=String(s||"").trim().toUpperCase();return s==="G"?"M":s};
 const fixS=()=>(D.el||[]).forEach(e=>{e.s=nsx(e.s)});fixS();
 const SUBD={"FRANÇAIS":[["Compréhension",8],["Disciplines outils",32]],"MATHÉMATIQUES":[["Activités numériques",10],["Activités géométriques",10],["Activités de mesure",10],["Résolution de problèmes",10]],"DM":[["Histoire",8],["Géographie",8],["IST",8]],"EDD":[["Vivre dans son milieu",12],["Vivre ensemble",12]]};
@@ -245,7 +305,7 @@ return`<div class="card np"><div class="row"><button class="btn s" id="pgord">${
 <div class="sgn"><span>Maître(sse)</span><span>Directeur(rice)/CE</span><span>CODEC</span><span>I.C.D</span></div>
 <div class="ft2">Bureau Planification, Suivi-Évaluation et Statistiques</div></div></div>
 <p class="mu np" id="psn">${psn()}</p>`},
-pa(){const i=D.info;return`<div class="card"><h2>Informations</h2><div class="row"><input data-i="ia" value="${esc(inf("ia"))}" placeholder="IA" size=14><input data-i="ief" value="${esc(inf("ief"))}" placeholder="IEF" size=14></div><div class="row"><input data-i="ecole" value="${esc(i.ecole)}" placeholder="École"><input data-i="classe" value="${esc(i.classe)}" placeholder="Classe" size=8><input data-i="annee" value="${esc(i.annee)}" placeholder="Année" size=10><input data-i="maitre" value="${esc(i.maitre)}" placeholder="Nom du maître"></div></div>
+pa(){const i=D.info;return`<div id="mc_acc"></div><div class="card"><h2>Informations</h2><div class="row"><input data-i="ia" value="${esc(inf("ia"))}" placeholder="IA" size=14><input data-i="ief" value="${esc(inf("ief"))}" placeholder="IEF" size=14></div><div class="row"><input data-i="ecole" value="${esc(i.ecole)}" placeholder="École"><input data-i="classe" value="${esc(i.classe)}" placeholder="Classe" size=8><input data-i="annee" value="${esc(i.annee)}" placeholder="Année" size=10><input data-i="maitre" value="${esc(i.maitre)}" placeholder="Nom du maître"></div></div>
 <div class="card"><h2>Matières et barèmes</h2><p class="mu">Une matière par ligne. Matière en 2 parties : Nom;Partie:barème;Partie:barème. Matière simple : Nom;barème. Pour détailler une partie : Ressources:40[Compréhension:8,Disciplines outils:32] (le barème de la partie est la somme des sous-disciplines).</p><textarea id="mat">${D.mat.map(m=>[m.n,...m.p.map(p=>(p.l?p.l+":"+p.m:p.m)+(p.s&&p.s.length?"["+p.s.map(q=>q.l+":"+q.m).join(",")+"]":""))].join(";")).join("\n")}</textarea><button class="btn" id="savemat">Enregistrer</button></div>
 <div class="card"><h2>Sauvegarde</h2><p class="mu">Les données restent sur cet appareil/navigateur. Faites une sauvegarde régulière.</p><button class="btn" id="exp">Exporter (fichier)</button><label class="btn s" style="display:inline-block">Importer<input type="file" id="imp" accept=".json" class="hide"></label></div>`}};
 function render(){nav();$("#v").className=tab==="pg"?"pg":"";$("#v").innerHTML=V[tab]()}
