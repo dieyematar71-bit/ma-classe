@@ -125,9 +125,7 @@ main.pg{page:pg;padding:0}
 <script>
 (()=>{
 const LS=localStorage,SS=sessionStorage,enc=new TextEncoder();
-const U=()=>{try{const a=JSON.parse(LS.getItem("mc_users"))||[];let f=0;return a.map(x=>{if(x.admin&&!f){f=1;return x}return{...x,admin:false}})}catch(e){return[]}};
-const OWN={s:"V9B+u3qMJDD/spjouo4S6A==",h:"bjHgB9hak41K/YkNISHUbnLkCes6+dkge9vjgMM5N6Y=",f:"f1a311f988b584"};
-const okCode=async c=>{c=String(c||"").trim().toUpperCase();return window.crypto&&crypto.subtle?(await hash(c,OWN.s))===OWN.h:(await hash(c,OWN.s))===OWN.f};
+const U=()=>{try{return JSON.parse(LS.getItem("mc_users"))||[]}catch(e){return[]}};
 const setU=a=>LS.setItem("mc_users",JSON.stringify(a));
 const b64=b=>btoa(String.fromCharCode(...new Uint8Array(b)));
 const unb=s=>Uint8Array.from(atob(s),c=>c.charCodeAt(0));
@@ -145,13 +143,13 @@ function screen(h){let o=document.getElementById("mc_lock");if(!o){o=document.cr
  o.innerHTML='<div style="background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px;width:100%;max-width:340px"><h2 style="margin:0 0 6px">📚 Gestion de classe</h2>'+h+'</div>';return o}
 function login(){
  const first=U().length===0;
- const o=screen(first?'<p style="color:var(--mu);margin:0 0 12px">Première utilisation : seul l\'administrateur, avec son code, peut créer le compte principal.</p><label>Identifiant</label><input id="mc_n" style="'+S+'" autocomplete="username"><label>Mot de passe (6 caractères min.)</label><input id="mc_p" type="password" style="'+S+'" autocomplete="new-password"><label>Confirmer le mot de passe</label><input id="mc_p2" type="password" style="'+S+'" autocomplete="new-password"><label>Code administrateur</label><input id="mc_c" style="'+S+'" autocomplete="off"><div id="mc_e" style="color:var(--wa);min-height:20px;margin-bottom:6px"></div><button class="btn" id="mc_go" style="width:100%">Créer le compte</button>'
+ const o=screen(first?'<p style="color:var(--mu);margin:0 0 12px">Première utilisation : créez le compte principal (administrateur).</p><label>Identifiant</label><input id="mc_n" style="'+S+'" autocomplete="username"><label>Mot de passe (6 caractères min.)</label><input id="mc_p" type="password" style="'+S+'" autocomplete="new-password"><label>Confirmer le mot de passe</label><input id="mc_p2" type="password" style="'+S+'" autocomplete="new-password"><div id="mc_e" style="color:var(--wa);min-height:20px;margin-bottom:6px"></div><button class="btn" id="mc_go" style="width:100%">Créer le compte</button>'
  :'<p style="color:var(--mu);margin:0 0 12px">Connectez-vous pour continuer.</p><label>Identifiant</label><input id="mc_n" style="'+S+'" autocomplete="username"><label>Mot de passe</label><input id="mc_p" type="password" style="'+S+'" autocomplete="current-password"><label style="display:block;margin-bottom:10px"><input type="checkbox" id="mc_sh"> Afficher le mot de passe</label><div id="mc_e" style="color:var(--wa);min-height:20px;margin-bottom:6px"></div><button class="btn" id="mc_go" style="width:100%">Se connecter</button>');
  const $=i=>o.querySelector("#"+i),err=m=>$("mc_e").textContent=m;
  if($("mc_sh"))$("mc_sh").onchange=e=>$("mc_p").type=e.target.checked?"text":"password";
  const go=async()=>{
   const n=$("mc_n").value.trim(),p=$("mc_p").value;if(!n||!p)return err("Remplissez les deux champs.");
-  if(first){if(p.length<6)return err("Mot de passe trop court (6 min.).");if(p!==$("mc_p2").value)return err("Les mots de passe ne correspondent pas.");if(!await okCode($("mc_c").value))return err("Code administrateur incorrect.");
+  if(first){if(p.length<6)return err("Mot de passe trop court (6 min.).");if(p!==$("mc_p2").value)return err("Les mots de passe ne correspondent pas.");
    const u=await newUser(n,p,true);setU([u]);SS.setItem("mc_cur",u.id);return location.reload()}
   const w=+LS.getItem("mc_wait")||0;if(Date.now()<w)return err("Trop d'essais. Réessayez dans "+Math.ceil((w-Date.now())/1000)+" s.");
   const u=U().find(x=>norm(x.name)===norm(n));
