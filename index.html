@@ -2,8 +2,7 @@
 <html lang="fr"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gestion de classe</title>
-<meta name="theme-color" content="#1b6e4f"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="Ma Classe">
-<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.webmanifest"><meta name="theme-color" content="#1b6e4f"><link rel="icon" href="icon.svg" type="image/svg+xml">
 <style>
 :root{--bg:#f6f7f9;--card:#fff;--tx:#1d2330;--mu:#667085;--bd:#d9dde5;--ac:#1b6e4f;--ac2:#e3f3ec;--wa:#b42318;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171c;--card:#1d222a;--tx:#e8ebf0;--mu:#9aa3b2;--bd:#323a46;--ac:#4cc592;--ac2:#1f3a30;--wa:#ff8a80}}
@@ -118,11 +117,14 @@ main.pg{page:pg;padding:0}
 .ps .in{width:55%}
 .ps .rc{break-inside:avoid}.ps .sgn{break-inside:avoid}
 }
+
+.auth-wrap{min-height:100dvh;display:grid;place-items:center;padding:18px}.auth-card{width:min(100%,430px);background:var(--card);border:1px solid var(--bd);border-radius:16px;padding:24px;box-shadow:0 12px 40px #0001}.auth-card h1{margin-bottom:8px}.auth-card label,#users-dialog label{display:grid;gap:6px;margin:14px 0;font-weight:600}.auth-card input,#users-dialog input{width:100%;padding:12px}.auth-card button{width:100%;padding:12px}#auth-msg,#users-msg{color:var(--wa);min-height:1.4em}#users-dialog{border:1px solid var(--bd);border-radius:14px;background:var(--card);color:var(--tx);width:min(94vw,480px);padding:20px}#users-dialog::backdrop{background:#0008}#application[hidden]{display:none!important}@media(max-width:520px){header .row{gap:5px}header .row button{font-size:13px;padding:7px}}
 </style></head><body>
-<header><h1>📚 Gestion de classe</h1><small id="sub"></small></header>
-<nav id="nav"></nav>
-<main id="v"></main>
-<script>
+<section id="auth" class="auth-wrap"><div class="auth-card"><h1>📚 Gestion de classe</h1><p>Connectez-vous avec les identifiants fournis par l’administrateur.</p><form id="login-form"><label>Nom d’utilisateur<input id="login-user" autocomplete="username" required></label><label>Mot de passe<input id="login-pass" type="password" autocomplete="current-password" required></label><button class="btn" type="submit">Se connecter</button><p id="auth-msg" role="status"></p></form><p class="mu">La première connexion nécessite Internet. Une session déjà ouverte peut ensuite être utilisée hors ligne sur cet appareil.</p></div></section>
+<section id="application" hidden><header><h1>📚 Gestion de classe</h1><small id="sub"></small><div class="row"><span id="connected-user" class="mu"></span><button class="btn s" id="admin-users" hidden>Gérer les comptes</button><button class="btn s" id="sync-now">Synchroniser</button><button class="btn d" id="logout">Déconnexion</button></div><p id="sync-status" class="mu" aria-live="polite"></p></header>
+<nav id="nav"></nav><main id="v"></main>
+<dialog id="users-dialog"><form method="dialog"><h2>Gestion des comptes</h2><p>Créer ou réinitialiser les accès des utilisateurs.</p><label>Nom d’utilisateur<input id="new-user" autocomplete="off" minlength="3"></label><label>Mot de passe provisoire<input id="new-pass" type="password" minlength="8" autocomplete="new-password"></label><div class="row"><button class="btn" id="create-user" type="button">Créer le compte</button><button class="btn s" id="reset-user" type="button">Réinitialiser le mot de passe</button><button class="btn d" value="cancel">Fermer</button></div><p id="users-msg" role="status"></p><hr><p class="mu">Les utilisateurs ne disposent d’aucune fonction de modification de leur identifiant ou mot de passe.</p></form></dialog>
+</section><script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script><script src="config.js"></script><script src="auth.js"></script><script>window.startClassApp=function(){
 const K="gestclasse_v2";
 const DEF={info:{ecole:"École Dialacoto 1",classe:"CM1",annee:"2026/2027",maitre:"MATAR DIEYE",ia:"TAMBACOUNDA",ief:"TAMBACOUNDA"},
 mat:[{n:"Français",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"Mathématiques",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"DM",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"EDD",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"Arabe",p:[{l:"",m:10}]},{n:"Arts plastiques",p:[{l:"",m:10}]}],
@@ -274,5 +276,5 @@ if(t.dataset.pp){const[id,k]=t.dataset.pp.split("|");D.pp=D.pp||{};(D.pp[id]=D.p
 if(t.dataset.i){D.info[t.dataset.i]=t.value;save();nav()}});
 document.addEventListener("input",e=>{const t=e.target;if(t.dataset.n){const[id,ci]=t.dataset.n.split("|");const x=ncols()[ci];const o=D.notes[per]=D.notes[per]||{};o[id]=o[id]||{};let v=t.value===""?"":Math.min(x.m,Math.max(0,parseFloat(t.value)));o[id][x.k]=v;if(x.pk){const vs=ncols().filter(y=>y.pk===x.pk).map(y=>o[id][y.k]).filter(z=>z!==undefined&&z!=="");o[id][x.pk]=vs.length?vs.reduce((a,z)=>a+(+z),0):"";const tc=document.querySelector(`[data-tot="${id}|${x.pk}"]`);if(tc)tc.innerHTML="<b>"+(vs.length?g(o[id][x.pk]):"")+"</b>"}save();const c=$("#m_"+id);if(c)c.innerHTML="<b>"+f(moy(id,per))+"</b>"}});
 sortEl();save();render();
-if("serviceWorker"in navigator&&location.protocol.startsWith("http"))window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
-</script></body></html>
+};
+</script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));}</script></body></html>
