@@ -1,0 +1,8 @@
+INSTALLER « Gestion de classe » (téléphone + ordinateur)
+
+1. Mettez ce dossier en ligne (HTTPS), gratuitement : Netlify Drop (app.netlify.com/drop) — glissez le dossier — ou GitHub Pages.
+2. Ouvrez le lien obtenu sur le téléphone / l’ordinateur.
+3. Touchez le bouton jaune « TÉLÉCHARGER » (Android, Windows, Mac : installation directe ; iPhone : Partager > Sur l’écran d’accueil).
+
+Première ouverture : créez le compte ADMINISTRATEUR. Dans « Administration », créez ensuite les comptes MEMBRES (identifiant + mot de passe).
+Les données restent sur chaque appareil : exportez « Sauvegarde complète » pour installer sur un autre appareil.
