@@ -144,11 +144,10 @@ var org=L.getItem("gc_origin")==="1",sv=+L.getItem("gc_seedv")||0;
 var need=!A||!A.admin||(!org&&(A.admin.salt!==SEED.auth.admin.salt||(sv&&SEED.t>sv)));
 if(!need)return;
 L.setItem("gestclasse_auth_v1",JSON.stringify(SEED.auth));
-if(SEED.data)L.setItem("gestclasse_v2",JSON.stringify(SEED.data));
 L.setItem("gc_seedv",String(SEED.t));L.removeItem("gestclasse_session");sessionStorage.removeItem("gestclasse_session")}catch(e){}})();
 </script>
 <script>
-const K="gestclasse_v2";
+let K="gestclasse_v2";
 const DEF={info:{ecole:"École Dialacoto 1",classe:"CM1",annee:"2026/2027",maitre:"MATAR DIEYE",ia:"TAMBACOUNDA",ief:"TAMBACOUNDA"},
 mat:[{n:"Français",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"Mathématiques",p:[{l:"Ressources",m:40},{l:"Compétence",m:60}]},{n:"DM",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"EDD",p:[{l:"Ressources",m:24},{l:"Compétence",m:16}]},{n:"Arabe",p:[{l:"",m:10}]},{n:"Arts plastiques",p:[{l:"",m:10}]}],
 el:[],notes:{},abs:{}};
@@ -161,7 +160,7 @@ const migr3=()=>{if(D.sub3)return;D.sub3=1;const OLD=["vocabulaire","grammaire",
 const PER=["Composition 1","Composition 2","Composition 3"];
 let pgOrd="a",tab="el",per=PER[0],day=new Date().toISOString().slice(0,10),bsel="all";
 const $=s=>document.querySelector(s);
-let ROLE=null,USER=null;const save=()=>{if(ROLE!=="admin")return;try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}};
+let ROLE=null,USER=null;const save=()=>{if(!ROLE)return;try{localStorage.setItem(K,JSON.stringify(D))}catch(e){}};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Math.random().toString(36).slice(2,9);
 const TABS=[["el","👥 Élèves"],["pr","✅ Présences"],["no","📝 Notes"],["re","🏆 Résultats"],["tx","📊 Taux de réussite"],["bu","🖨️ Bulletins"],["pg","📋 Passage"],["pa","⚙️ Réglages"]];
@@ -311,17 +310,21 @@ let a=0xdeadbeef,b=0x41c6ce57;const s=salt+"|"+pw;for(let i=0;i<s.length;i++){co
 const isApp=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
 const lockLeft=()=>{try{const l=JSON.parse(localStorage.getItem(LK)||"null");return l&&l.u>Date.now()?Math.ceil((l.u-Date.now())/1000):0}catch(e){return 0}};
 const failed=()=>{try{const l=JSON.parse(localStorage.getItem(LK)||"null")||{n:0,u:0};l.n++;if(l.n>=5){l.u=Date.now()+30000;l.n=0}localStorage.setItem(LK,JSON.stringify(l))}catch(e){}};
-const tabsFor=()=>ROLE==="admin"?[...TABS,["adm","👑 Administration"]]:[["pf","🏠 Mon espace"],...TABS.filter(t=>t[0]!=="pa")];
+const tabsFor=()=>ROLE==="admin"?[...TABS,["adm","👑 Administration"]]:[["pf","🏠 Mon espace"],...TABS];
 const fld=(l,i,ac)=>`<label>${l}<input id="${i}" autocapitalize="none" autocomplete="${ac||"off"}"></label>`;
 const pwf=(l,i,ac)=>`<label>${l}<span class="pw"><input id="${i}" type="password" autocomplete="${ac}"><button type="button" class="btn s" data-ac="eye">👁</button></span></label>`;
 const DLB=()=>isApp()?"":`<button class="btn dlb" id="au_dl2">⬇ TÉLÉCHARGER</button>`;
 function showAuth(){ROLE=USER=null;$("#app").hidden=true;const a=$("#auth");a.hidden=false;
-const top=`<div class="lg">📚</div><h1>Gestion de classe</h1><p class="mu">${esc(D.info.ecole)} · ${esc(D.info.annee)}</p>`;
+const top=`<div class="lg">📚</div><h1>Gestion de classe</h1>`;
 if(!AUTH&&(SEED||location.hash!=="#admin")){a.innerHTML=`<div class="ab">${top}<h2>Accès réservé</h2><p class="mu">Cette application n’est pas encore configurée sur cet appareil. Demandez à l’administrateur de vous envoyer le lien à jour, puis rouvrez-le.</p>${DLB()}</div>`;return}
 if(!AUTH){a.innerHTML=`<div class="ab">${top}<h2>Première utilisation (administrateur)</h2><p class="mu">Créez le compte administrateur. Lui seul pourra créer les comptes membres.</p>${fld("Nom complet","au_n","name")}${fld("Identifiant","au_id","username")}${pwf("Mot de passe (6 caractères min.)","au_p1","new-password")}${pwf("Confirmer le mot de passe","au_p2","new-password")}<div class="er" id="au_er"></div><button class="btn big" id="au_su">Créer et entrer</button>${DLB()}<details><summary>J’ai une sauvegarde complète (nouvel appareil)</summary><label class="btn s">Importer la sauvegarde<input type="file" id="au_imp" accept=".json" class="hide"></label></details></div>`;return}
 a.innerHTML=`<div class="ab">${top}<div class="seg"><button data-am="m" class="${AM==="m"?"on":""}">🔑 Espace membre</button><button data-am="a" class="${AM==="a"?"on":""}">👑 Administrateur</button></div>${fld("Identifiant","au_id","username")}${pwf("Mot de passe","au_pw","current-password")}<label class="ck"><input type="checkbox" id="au_keep"> Rester connecté sur cet appareil</label><div class="er" id="au_er"></div><button class="btn big" id="au_go">Se connecter</button>${DLB()}<details><summary>Mot de passe oublié ?</summary><p class="mu">Membre : demandez un nouveau mot de passe à l’administrateur. Administrateur : effacez les données du site dans les paramètres du navigateur, puis importez votre dernière sauvegarde.</p></details></div>`}
-function enter(r,u,keep){ROLE=r;USER=u;if(r==="admin"){try{localStorage.setItem("gc_origin","1")}catch(e){}}try{(keep?localStorage:sessionStorage).setItem(SK,JSON.stringify({u:u.id,r}))}catch(e){}
-$("#auth").hidden=true;$("#app").hidden=false;tab=r==="admin"?"el":"pf";sortEl();save();renderUB();render();scrollTo(0,0)}
+function loadData(){K=ROLE==="admin"?"gestclasse_v2":"gestclasse_v2_m_"+USER.id;let d=null;try{d=JSON.parse(localStorage.getItem(K))}catch(e){}
+if(!d){if(ROLE==="admin"){try{const o=JSON.parse(localStorage.getItem("gestclasse_v1")||"null");d=o?{...JSON.parse(JSON.stringify(DEF)),info:o.info,el:o.el,abs:o.abs||{}}:JSON.parse(JSON.stringify(DEF))}catch(e){d=JSON.parse(JSON.stringify(DEF))}}
+else{d=JSON.parse(JSON.stringify(DEF));d.info={ecole:"",classe:"",annee:DEF.info.annee,maitre:String(USER.nom||"").toUpperCase(),ia:"",ief:""}}}
+D=d;fixS();migr();migr3();pgOrd="a";per=PER[0];bsel="all"}
+function enter(r,u,keep){ROLE=r;USER=u;loadData();if(r==="admin"){try{localStorage.setItem("gc_origin","1")}catch(e){}}try{(keep?localStorage:sessionStorage).setItem(SK,JSON.stringify({u:u.id,r}))}catch(e){}
+$("#auth").hidden=true;$("#app").hidden=false;tab="el";sortEl();save();renderUB();render();scrollTo(0,0)}
 function renderUB(){$("#ub").innerHTML=`<span class="mu">👤 ${esc(USER.nom)} · ${ROLE==="admin"?"Administrateur":"Membre"}</span><button class="btn s" id="au_out">Déconnexion</button>`+(isApp()?"":`<button class="btn dlb" id="au_dl">⬇ TÉLÉCHARGER</button>`)}
 function logout(){try{localStorage.removeItem(SK);sessionStorage.removeItem(SK)}catch(e){}showAuth()}
 async function doLogin(){const er=$("#au_er"),id=$("#au_id").value.trim().toLowerCase(),pw=$("#au_pw").value,lk=lockLeft();
@@ -344,13 +347,13 @@ try{const r=await fetch(location.href.split("#")[0],{cache:"no-store"});if(!r.ok
 catch(e){help("Menu du navigateur ⋮ → <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.")}}
 const pwBlock=()=>`<div class="card" data-free><h2>🔒 Changer mon mot de passe</h2><div class="row"><input id="au_op" type="password" placeholder="Mot de passe actuel" autocomplete="current-password"><input id="au_np" type="password" placeholder="Nouveau (6 car. min.)" autocomplete="new-password"><button class="btn" data-ac="pw_me">Changer</button></div><div class="er" id="au_e1"></div></div>`;
 V.pf=()=>{const nM=D.el.filter(e=>e.s==="M").length,nF=D.el.filter(e=>e.s==="F").length,mm=PER.map(p=>{const l=D.el.map(e=>moy(e.id,p)).filter(x=>x!=null);return l.length?l.reduce((a,x)=>a+x,0)/l.length:null});
-return`<div class="card"><h2>🏠 Bienvenue, ${esc(USER.nom)}</h2><p class="mu">${esc(D.info.classe)} · ${esc(D.info.ecole)} · ${esc(D.info.annee)}</p><div class="kp"><div><b>${D.el.filter(e=>!e.ex).length}</b>élèves</div><div><b>${nM}</b>garçons</div><div><b>${nF}</b>filles</div>${PER.map((p,i)=>`<div><b>${f(mm[i])}</b>moy. ${esc(p)}</div>`).join("")}</div><p class="mu">Accès en consultation (élèves, présences, notes, résultats, taux, bulletins, passages). Seul l’administrateur modifie les données.</p></div>`+pwBlock()};
+return`<div class="card"><h2>🏠 Bienvenue, ${esc(USER.nom)}</h2><p class="mu">${esc(D.info.classe)} · ${esc(D.info.ecole)} · ${esc(D.info.annee)}</p><div class="kp"><div><b>${D.el.filter(e=>!e.ex).length}</b>élèves</div><div><b>${nM}</b>garçons</div><div><b>${nF}</b>filles</div>${PER.map((p,i)=>`<div><b>${f(mm[i])}</b>moy. ${esc(p)}</div>`).join("")}</div><p class="mu">Vos données (élèves, présences, notes, bulletins…) sont enregistrées sur cet appareil et visibles de vous seul. Pensez à les sauvegarder régulièrement (onglet ⚙️ Réglages → Exporter).</p></div>`+pwBlock()};
 V.adm=()=>{const ms=AUTH.members;return`<div class="card"><h2>👑 Compte administrateur</h2><p>Identifiant : <b>${esc(AUTH.admin.id)}</b> · ${esc(AUTH.admin.nom)}</p></div>`+pwBlock()+
 `<div class="card"><h2>➕ Créer un compte membre</h2><div class="row"><input id="au_mn" placeholder="Nom complet"><input id="au_mi" placeholder="Identifiant" autocapitalize="none"><input id="au_mp" placeholder="Mot de passe"><button class="btn s" data-ac="gen">Générer</button><button class="btn" data-ac="add_m">Créer</button></div><div class="er" id="au_e2"></div></div>
 <div class="card"><h2>👥 Membres (${ms.length})</h2><div class="sc"><table><tr><th>Nom</th><th>Identifiant</th><th>Statut</th><th>Dernière connexion</th><th></th></tr>${ms.map(m=>{const u=`data-u="${esc(m.id)}"`;return`<tr><td>${esc(m.nom)}</td><td><b>${esc(m.id)}</b></td><td>${m.actif?"✅ Actif":"⛔ Désactivé"}</td><td class="mu">${m.last?new Date(m.last).toLocaleString("fr-FR"):"jamais"}</td><td><button class="btn s" data-ac="pw_m" ${u}>🔑 Mot de passe</button><button class="btn s" data-ac="tg" ${u}>${m.actif?"Désactiver":"Activer"}</button><button class="btn d" data-ac="rm" ${u}>Supprimer</button></td></tr>`}).join("")||`<tr><td colspan="5" class="mu">Aucun membre.</td></tr>`}</table></div></div>
-<div class="card"><h2>🚀 Publier pour les membres</h2><p class="mu">Génère une version de l’application contenant les comptes et les données actuels. Remplacez le fichier sur votre hébergement (GitHub) par ce fichier : tout membre qui ouvre le lien, même sur un nouveau téléphone, arrive directement sur l’écran de connexion, sans pouvoir créer de compte administrateur. À refaire après chaque modification (comptes, notes, présences…).</p><button class="btn" data-ac="pub">Générer le fichier à publier</button><div class="er" id="au_e3"></div></div>
+<div class="card"><h2>🚀 Publier pour les membres</h2><p class="mu">Génère une version de l’application contenant uniquement les comptes (identifiants et mots de passe chiffrés), jamais vos données. Chaque membre saisit ses propres données sur son appareil : vous ne les voyez pas, et il ne voit pas les vôtres. Remplacez le fichier sur votre hébergement (GitHub) par ce fichier : tout membre qui ouvre le lien, même sur un nouveau téléphone, arrive directement sur l’écran de connexion, sans pouvoir créer de compte administrateur. À refaire après chaque modification (comptes, notes, présences…).</p><button class="btn" data-ac="pub">Générer le fichier à publier</button><div class="er" id="au_e3"></div></div>
 <div class="card"><h2>💾 Sauvegarde complète (données + comptes)</h2><p class="mu">Pour installer l’application sur un autre appareil : exportez ici, puis importez ce fichier en ajoutant #admin à la fin du lien (première utilisation). Les comptes et données sont stockés sur chaque appareil.</p><button class="btn" data-ac="exp_all">Exporter</button><label class="btn s" style="display:inline-block">Importer (remplace tout)<input type="file" id="au_imp" accept=".json" class="hide"></label></div>`};
-function lock(){if(ROLE==="admin")return;const ta=$("#ta");if(ta)ta.closest(".card").remove();
+function lock(){return;const ta=$("#ta");if(ta)ta.closest(".card").remove();
 document.querySelectorAll("#v input,#v select,#v textarea,#v button").forEach(x=>{if(x.closest("[data-free]")||["per","bs","day","prt","csv","pgord"].includes(x.id))return;x.disabled=true})}
 function render(){if(!tabsFor().some(t=>t[0]===tab))tab=tabsFor()[0][0];nav();$("#v").className=tab==="pg"?"pg":"";$("#v").innerHTML=V[tab]();lock();if(FL){const e=$("#au_e2");if(e){e.className="ok";e.textContent=FL}FL=""}}
 const rpw=()=>{const a=new Uint8Array(8),c="abcdefghjkmnpqrstuvwxyz23456789";crypto.getRandomValues(a);return[...a].map(x=>c[x%c.length]).join("")};
@@ -373,7 +376,7 @@ if(ac==="pw_m"&&m){const p=prompt("Nouveau mot de passe pour "+m.nom+" (6 caract
 if(ac==="tg"&&m){m.actif=!m.actif;saveAuth();render()}
 if(ac==="rm"&&m&&confirm("Supprimer le compte de "+m.nom+" ?")){AUTH.members=AUTH.members.filter(x=>x!==m);saveAuth();render()}
 if(ac==="pub"){const er=$("#au_e3"),MK1="/*SEE"+"D*/",MK2="/*/SEE"+"D*/";try{const r=await fetch(location.href.split("#")[0],{cache:"no-store"});if(!r.ok)throw 0;let h=await r.text();const a=h.indexOf(MK1),b=h.indexOf(MK2);if(a<0||b<a)throw 0;
-const js=JSON.stringify({t:Date.now(),auth:AUTH,data:D}).replace(/</g,"\\u003c").replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029");
+const js=JSON.stringify({t:Date.now(),auth:AUTH}).replace(/</g,"\\u003c").replace(/\u2028/g,"\\u2028").replace(/\u2029/g,"\\u2029");
 h=h.slice(0,a)+MK1+"const SEED="+js+";"+h.slice(b);const fn=location.pathname.split("/").pop()||"index.html";dl2(fn,h,"text/html");er.className="ok";er.textContent="Fichier « "+fn+" » téléchargé : remplacez-le sur votre hébergement."}catch(x){er.className="er";er.textContent="Impossible de générer le fichier : ouvrez l’application depuis son lien en ligne (pas depuis un fichier local)."}}
 if(ac==="exp_all")dl2("gestion-classe-sauvegarde-complete.json",JSON.stringify({gc:1,data:D,auth:AUTH}),"application/json")});
 document.addEventListener("change",e=>{if(e.target.id!=="au_imp")return;const r=new FileReader();r.onload=()=>{try{const b=JSON.parse(r.result);if(b.gc!==1||!b.auth||!b.auth.admin||!b.data)throw 0;if(AUTH&&!confirm("Remplacer toutes les données et tous les comptes de cet appareil ?"))return;localStorage.setItem(K,JSON.stringify(b.data));localStorage.setItem(AK,JSON.stringify(b.auth));localStorage.setItem("gc_origin","1");localStorage.removeItem(SK);sessionStorage.removeItem(SK);location.reload()}catch(x){alert("Fichier invalide : utilisez une sauvegarde complète (Administration → Exporter).")}};r.readAsText(e.target.files[0])});
