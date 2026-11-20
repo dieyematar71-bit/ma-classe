@@ -137,7 +137,7 @@ header .hh{display:flex;justify-content:space-between;align-items:center;gap:8px
 <main id="v"></main>
 </div>
 <script>
-/*SEED*/const SEED={"t":1795210174403,"auth":{"v":1,"admin":{"id":"matardieye","nom":"Matar DIEYE","salt":"7cf09a8f1979332327557bf0aa1581f6","h":"p:e30cc0c808eff0cdc4e9ed76eac34f83033d84d5352cb22820fefce38e5062ad","last":1795209821772},"members":[{"id":"manendeye","nom":"Ndeye Mane","salt":"cb0852b86336d0b3ae3fd028579aa78e","h":"p:38fbfc55be7fdcece940265420fc1d1a05d046f82a6a0ab900fe3ff190d83e1d","actif":true,"cree":1795207808854}]}};/*/SEED*/
+/*SEED*/const SEED=null;/*/SEED*/
 (function(){try{if(!SEED||!SEED.auth||!SEED.auth.admin)return;
 var L=localStorage,A=null;try{A=JSON.parse(L.getItem("gestclasse_auth_v1"))}catch(e){}
 var org=L.getItem("gc_origin")==="1",sv=+L.getItem("gc_seedv")||0;
@@ -343,8 +343,12 @@ const s=rsalt();AUTH={v:1,admin:{id,nom,salt:s,h:await hpw(p,s),last:Date.now()}
 function help(m){const x=document.createElement("div");x.id="md";x.className="md";x.innerHTML=`<div class="mb"><p>${m}</p><button class="btn" data-ac="close">OK</button></div>`;document.body.appendChild(x)}
 async function telecharger(){if(DP){DP.prompt();try{await DP.userChoice}catch(e){}DP=null;return}
 if(/iphone|ipad|ipod/i.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1))return help("Sur iPhone/iPad : touchez <b>Partager ⬆</b> puis <b>« Sur l’écran d’accueil »</b>.");
-try{const r=await fetch(location.href.split("#")[0],{cache:"no-store"});if(!r.ok)throw 0;dl2("Ma_Classe.html",await r.text(),"text/html");help("Fichier <b>Ma_Classe.html</b> téléchargé. Ouvrez-le dans votre navigateur. Pour l’installer comme application : icône d’installation dans la barre d’adresse, ou menu ⋮ → « Installer l’application ».")}
-catch(e){help("Menu du navigateur ⋮ → <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.")}}
+const ua=navigator.userAgent,and=/android/i.test(ua),ff=/firefox|fxios/i.test(ua),op=/OPR\/|opera/i.test(ua);
+if(ff&&!and)return help("<b>Firefox sur ordinateur</b> ne permet pas d’installer les applications web. Ouvrez ce lien dans <b>Chrome</b>, <b>Edge</b> ou <b>Opera</b> puis cliquez sur « TÉLÉCHARGER », ou ajoutez cette page aux favoris (<b>Ctrl + D</b>).");
+if(ff&&and)return help("Sur <b>Firefox Android</b> : menu <b>⋮</b> → <b>« Installer »</b> (ou « Ajouter à l’écran d’accueil »).");
+if(op&&and)return help("Sur <b>Opera Android</b> : menu <b>⋮</b> → <b>« Ajouter à l’écran d’accueil »</b>, puis choisissez « Application ».");
+if(op)return help("Sur <b>Opera</b> : cliquez sur l’<b>icône d’installation</b> à droite de la barre d’adresse (ou menu Opera → recherchez « Installer »). Si elle n’apparaît pas, ouvrez ce lien dans <b>Chrome</b> ou <b>Edge</b> puis cliquez sur « TÉLÉCHARGER ».");
+help("Menu du navigateur <b>⋮</b> → <b>« Installer l’application »</b> ou <b>« Ajouter à l’écran d’accueil »</b>.")}
 const pwBlock=()=>`<div class="card" data-free><h2>🔒 Changer mon mot de passe</h2><div class="row"><input id="au_op" type="password" placeholder="Mot de passe actuel" autocomplete="current-password"><input id="au_np" type="password" placeholder="Nouveau (6 car. min.)" autocomplete="new-password"><button class="btn" data-ac="pw_me">Changer</button></div><div class="er" id="au_e1"></div></div>`;
 V.pf=()=>{const nM=D.el.filter(e=>e.s==="M").length,nF=D.el.filter(e=>e.s==="F").length,mm=PER.map(p=>{const l=D.el.map(e=>moy(e.id,p)).filter(x=>x!=null);return l.length?l.reduce((a,x)=>a+x,0)/l.length:null});
 return`<div class="card"><h2>🏠 Bienvenue, ${esc(USER.nom)}</h2><p class="mu">${esc(D.info.classe)} · ${esc(D.info.ecole)} · ${esc(D.info.annee)}</p><div class="kp"><div><b>${D.el.filter(e=>!e.ex).length}</b>élèves</div><div><b>${nM}</b>garçons</div><div><b>${nF}</b>filles</div>${PER.map((p,i)=>`<div><b>${f(mm[i])}</b>moy. ${esc(p)}</div>`).join("")}</div><p class="mu">Vos données (élèves, présences, notes, bulletins…) sont enregistrées sur cet appareil et visibles de vous seul. Pensez à les sauvegarder régulièrement (onglet ⚙️ Réglages → Exporter).</p></div>`+pwBlock()};
