@@ -56,6 +56,27 @@ td input[type=number]{width:64px}
 .bl .sg u{display:block}.bl .sg small{display:block;font-weight:normal;color:#444;font-size:.75em;text-decoration:none}
 .hide{display:none}
 @page{size:A4 landscape;margin:0}
+@page el_land{size:A4 landscape;margin:8mm}
+.el-print-wrap{display:none}
+.el-sheet{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:14px;font:12px/1.3 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.el-sheet .el-top-flag{text-align:center;margin-bottom:4px}
+.el-sheet .el-top-flag img{width:27mm;height:11.7mm;display:inline-block}
+.el-sheet .el-hdr-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;margin-bottom:8px;border-bottom:1.5px solid #333;padding-bottom:6px}
+.el-sheet .el-left{text-align:left;font-size:12px;line-height:1.35}
+.el-sheet .el-center-title{text-align:center;font-weight:bold;font-size:20px;text-transform:uppercase;padding:4px 10px;align-self:center;letter-spacing:.3px}
+.el-sheet .el-right{text-align:right;font-size:12px;line-height:1.35}
+.el-sheet table{width:100%;border-collapse:collapse;margin-top:4px}
+.el-sheet th,.el-sheet td{border:1px solid #333;padding:4px 6px;text-align:left;font-size:11.5px;color:#000;text-transform:none;white-space:normal;vertical-align:middle}
+.el-sheet th{background:#e6e6e6;font-weight:bold;text-align:center}
+.el-sheet td.c{text-align:center}
+@media print{
+body.el-printing .card,body.el-printing .sheets,body.el-printing .ps{display:none!important}
+body.el-printing main{page:el_land;padding:0;max-width:none;margin:0}
+body.el-printing .el-print-wrap{display:block!important}
+body.el-printing .el-sheet{border:0;border-radius:0;padding:0}
+body.el-printing .el-sheet tr{break-inside:avoid;page-break-inside:avoid}
+body.el-printing .el-sheet thead{display:table-header-group}
+}
 @media print{body{background:#fff}header,nav,.np{display:none!important}main{padding:8mm;max-width:none;margin:0}.card{border:0;padding:0}
 .sheets{display:block;margin:-8mm}
 .sheet{display:flex;flex-wrap:nowrap;justify-content:center;align-items:center;gap:5mm;width:297mm;height:209mm;position:relative;break-after:page;page-break-after:always;overflow:visible}
@@ -72,6 +93,32 @@ td input[type=number]{width:64px}
 .bl .hd td,.bl .hd th{padding:.2mm 1mm}
 .bl .sg>div{height:19mm}.bl.b3 .sg>div{height:22mm}}
 
+@page dom_land{size:A4 landscape;margin:7mm}
+.dom-sheets{display:flex;flex-direction:column;gap:16px}
+.dom-sheet{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:14px;font:12px/1.25 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.dom-sheet .dom-flag{text-align:center;margin-bottom:3px}
+.dom-sheet .dom-flag img{width:25mm;height:10.8mm;display:inline-block}
+.dom-sheet .dom-hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;border-bottom:1.5px solid #333;padding-bottom:5px;margin-bottom:6px}
+.dom-sheet .dom-left{text-align:left;font-size:11.5px;line-height:1.3}
+.dom-sheet .dom-center{text-align:center;align-self:center}
+.dom-sheet .dom-center h3{margin:0;font-size:17px;text-transform:uppercase;letter-spacing:.3px}
+.dom-sheet .dom-center .dom-sub{font-size:12.5px;font-weight:bold;margin-top:2px}
+.dom-sheet .dom-right{text-align:right;font-size:11.5px;line-height:1.3}
+.dom-sheet table{width:100%;border-collapse:collapse;margin-bottom:8px}
+.dom-sheet th,.dom-sheet td{border:1px solid #333;padding:3px 5px;text-align:center;font-size:11px;color:#000;text-transform:none;white-space:normal;vertical-align:middle}
+.dom-sheet th{background:#e6e6e6;font-weight:bold}
+.dom-sheet td.l{text-align:left}
+.dom-sheet .dom-synth-title{font-weight:bold;text-decoration:underline;font-size:12px;margin:4px 0}
+.dom-sheet .dom-synth th{background:#d9d9d9}
+@media print{
+main.dom-pg{page:dom_land;padding:0;max-width:none;margin:0}
+.dom-sheets{gap:0}
+.dom-sheet{border:0;border-radius:0;padding:0;break-after:page;page-break-after:always}
+.dom-sheet:last-child{break-after:auto;page-break-after:auto}
+.dom-sheet tr{break-inside:avoid;page-break-inside:avoid}
+.dom-sheet thead{display:table-header-group}
+.dom-sheet .dom-synth{break-inside:avoid;page-break-inside:avoid}
+}
 @page pg{size:A4 portrait;margin:6mm}
 .ps{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:14px;font:13px/1.3 "Times New Roman",Times,serif;min-width:780px}
 .ps{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -132,7 +179,7 @@ main.pg{page:pg;padding:0}
 .pw-form .field{display:flex;flex-direction:column;gap:4px}
 .pw-form label{font-size:12px;color:var(--mu);font-weight:600}
 
-</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22content%3A%2F%2Fcom.google.android.apps.search.assistant.surfaces.voice.robin.fileprovider%2Fattachments%2FMa_Classe_securise-v6.html%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"></head><body>
+</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22content%3A%2F%2Fcom.google.android.apps.search.assistant.surfaces.voice.robin.fileprovider%2Fattachments%2FMa_Classe_Application_v6.html%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"></head><body>
 
 <div id="authGate" class="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="authTitle" style="display: flex;">
   <div class="auth-box">
@@ -149,7 +196,7 @@ main.pg{page:pg;padding:0}
       </div>
       <div id="loginErr" class="auth-err"></div>
       <button type="submit" class="btn" style="margin:0;width:100%">Se connecter</button>
-    </form><div id="authInstallWrap" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--bd);">
+    </form><div id="authInstallWrap" style="margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--bd); display: block;">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-desktop-shortcut="1" style="flex:1 1 170px;display:inline-flex;align-items:center;justify-content:center;gap:6px;margin:0;font-weight:600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg> Raccourci Bureau</button>
           <button type="button" class="btn s" data-export-app-html="1" style="flex:1 1 170px;display:inline-flex;align-items:center;justify-content:center;gap:6px;margin:0;font-weight:600"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"></path><path d="m7 10 5 5 5-5"></path><path d="M5 21h14"></path></svg> Télécharger .html</button>
@@ -160,7 +207,7 @@ main.pg{page:pg;padding:0}
   </div>
 </div>
 
-<header><div class="hdr-wrap"><div><h1>📚 Gestion de classe</h1><small id="sub"></small></div><div class="hdr-actions"><button type="button" class="btn np" data-desktop-shortcut="1" style="display: inline-flex; align-items: center; gap: 6px; margin: 0px; font-weight: 600;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h6v6"></path><path d="M10 14 21 3"></path><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path></svg> Raccourci Bureau</button><span id="whoBadge" class="role-badge"></span><button class="btn s np" id="lockBtn" type="button">🔒 Déconnexion</button></div></div></header>
+<header><div class="hdr-wrap"><div><h1>📚 Gestion de classe</h1><small id="sub"></small></div><div class="hdr-actions"><span id="whoBadge" class="role-badge"></span><button class="btn s np" id="lockBtn" type="button">🔒 Déconnexion</button></div></div></header>
 <nav id="nav"></nav>
 <main id="v"></main>
 <script>
@@ -260,7 +307,7 @@ const $=s=>document.querySelector(s);
 const save=()=>{const bk=curBucketKey();if(!bk)return;setBucketData(bk,D)};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Math.random().toString(36).slice(2,9);
-const TABS=[["el","👥 Élèves"],["pr","✅ Présences"],["no","📝 Notes"],["re","🏆 Résultats"],["tx","📊 Taux de réussite"],["bu","🖨️ Bulletins"],["pg","📋 Passage"],["pa","⚙️ Réglages"]];
+const TABS=[["el","👥 Élèves"],["pr","✅ Présences"],["no","📝 Notes"],["re","🏆 Résultats"],["tx","📊 Taux de réussite"],["dm","📄 Feuilles domaines"],["bu","🖨️ Bulletins"],["pg","📋 Passage"],["pa","⚙️ Réglages"]];
 const cols=()=>{const a=[];D.mat.forEach(m=>m.p.forEach(p=>a.push({k:m.n+"|"+p.l,n:m.n,l:p.l,m:p.m})));return a};
 const g=x=>String(x).replace(".",",");
 const ncols=()=>{const a=[];D.mat.forEach(m=>m.p.forEach(p=>{if(p.s&&p.s.length){p.s.forEach(q=>a.push({k:m.n+"|"+p.l+"|"+q.l,n:m.n,l:q.l,m:q.m,pk:m.n+"|"+p.l}));a.push({tot:1,k:m.n+"|"+p.l,n:m.n,l:p.l+" (total)",m:p.m})}else a.push({k:m.n+"|"+p.l,n:m.n,l:p.l,m:p.m})}));return a};
@@ -324,8 +371,18 @@ function txCalc(r,per){const th=(D.seuil||50)/100,st={M:[0,0],F:[0,0],T:[0,0]};D
 function psn(){const n=D.el.filter(e=>e.s!=="M"&&e.s!=="F").length;return n?`${n} élève(s) sans sexe renseigné (M/F) : ils sont comptés dans le total mais pas dans Garçons/Filles. Corrigez-les dans l’onglet Élèves.`:""}
 
 const V={
-el(){return`<div class="card np"><h2>Ajouter des élèves</h2><p class="mu">Collez la liste (un nom par ligne). Ajoutez « ;F » ou « ;M » pour le sexe (facultatif).</p><textarea id="ta" placeholder="Awa Diop;F&#10;Moussa Ba;M"></textarea><button class="btn" id="add">Ajouter</button></div>
-<div class="card"><div class="row np" style="justify-content:space-between;margin-bottom:0"><h2>Liste de la classe (${D.el.length})</h2>${D.el.length?`<button class="btn d" id="delall" style="border:1px solid var(--wa);margin:0">🗑️ Supprimer toute la liste</button>`:""}</div><div class="sc"><table><tr><th>N°</th><th>Nom</th><th>Sexe</th><th class="np"></th></tr>${D.el.map((e,i)=>`<tr><td>${i+1}</td><td>${esc(e.nom)}</td><td>${e.s||""}</td><td class="np"><button class="btn s" data-edit="${e.id}">Modifier</button><button class="btn d" data-del="${e.id}">Supprimer</button></td></tr>`).join("")||`<tr><td colspan=4 class="mu">Aucun élève pour l’instant.</td></tr>`}</table></div></div>`},
+el(){
+const iaVal=inf("ia")||"Tamba";
+const iefVal=inf("ief")||"Tamba";
+const codecVal=D.info.codec||"Dialacoto";
+const ecoleVal=D.info.ecole||"Dialacoto 1";
+const anneeVal=D.info.annee||"2026/2027";
+const coursVal=D.info.classe||"";
+const effVal=D.el.length;
+const titulaireVal=D.info.maitre||"";
+const printable=`<div class="el-print-wrap"><div class="el-sheet"><div class="el-top-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div><div class="el-hdr-grid"><div class="el-left"><div><b>IA :</b> ${esc(iaVal)}</div><div><b>IEF :</b> ${esc(iefVal)}</div><div><b>CODEC :</b> ${esc(codecVal)}</div><div><b>École :</b> ${esc(ecoleVal)}</div></div><div class="el-center-title">Liste nominative des élèves</div><div class="el-right"><div><b>Année scolaire :</b> ${esc(anneeVal)}</div><div><b>Cours :</b> ${esc(coursVal)}</div><div><b>Effectif :</b> ${effVal}</div><div><b>Titulaire :</b> ${esc(titulaireVal)}</div></div></div><table><thead><tr><th>N°</th><th>Nom et prénoms</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th></tr></thead><tbody>${D.el.map((e,i)=>`<tr><td class="c">${i+1}</td><td>${esc(e.nom)}</td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td></tr>`).join("")||`<tr><td colspan="6" class="c">Aucun élève pour l’instant.</td></tr>`}</tbody></table></div></div>`;
+return`<div class="card np"><h2>Ajouter des élèves</h2><p class="mu">Collez la liste (un nom par ligne). Champs facultatifs séparés par « ; » : <code>Nom;Sexe;Date et lieu de naissance;État de santé;Tél. tuteur</code>.</p><textarea id="ta" placeholder="Awa Diop;F;12/04/2016 à Tambacounda;RAS;77 123 45 67&#10;Moussa Ba;M;05/09/2015 à Dialacoto;Asthme léger;76 987 65 43"></textarea><button class="btn" id="add">Ajouter</button></div>
+<div class="card"><div class="row np" style="justify-content:space-between;margin-bottom:8px"><h2>Liste de la classe (${D.el.length})</h2><div class="row" style="margin:0">${D.el.length?`<button class="btn" id="dl_el_list" style="margin:0">⬇️ Télécharger la liste (A4 paysage)</button><button class="btn d" id="delall" style="border:1px solid var(--wa);margin:0">🗑️ Supprimer toute la liste</button>`:""}</div></div><div class="sc"><table><tr><th>N°</th><th>Nom</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th><th class="np"></th></tr>${D.el.map((e,i)=>`<tr><td>${i+1}</td><td>${esc(e.nom)}</td><td>${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td><td class="np"><button class="btn s" data-edit="${e.id}">Modifier</button><button class="btn d" data-del="${e.id}">Supprimer</button></td></tr>`).join("")||`<tr><td colspan=7 class="mu">Aucun élève pour l’instant.</td></tr>`}</table></div></div>`+printable},
 pr(){const d=D.abs[day]||{},we=!isWD(day),nwd=!!NW()[day],off=we||nwd,act=D.el.filter(e=>!e.ex),nex=D.el.length-act.length;const cnt=k=>act.filter(e=>d[e.id]===k).length;const nwl=Object.keys(NW()).sort();
 return`<div class="card"><div class="row"><b>Date :</b><input type="date" id="day" value="${day}"><button class="btn s" id="allp"${off?" disabled":""}>Tous présents</button>${we?"":`<button class="btn ${nwd?"":"s"}" id="nwtoggle">${nwd?"✅ Rétablir : jour ouvrable":"🚫 Jour non ouvrable"}</button>`}</div>
 ${off?`<p class="mu"><b>${we?"Week-end":"Jour non ouvrable"} :</b> ce jour n’est pas compté dans les jours ouvrables du mois. Les présences ne sont pas saisies.</p>`:`<div class="kp"><div><b>${act.length-cnt("A")-cnt("R")}</b>présents</div><div><b>${cnt("A")}</b>absents</div><div><b>${cnt("R")}</b>retards</div></div>
@@ -348,6 +405,173 @@ return`<div class="card"><div class="row np"><b>Période :</b>${perSel()}<label 
 <div class="kp"><div><b>${comp.length}</b>ont composé</div><div><b>${cg}</b>garçons</div><div><b>${cf}</b>filles</div></div>
 <p class="mu">Un élève réussit une discipline quand sa note atteint au moins ${th} % du barème. Pour chaque discipline, on compte les élèves qui ont une note (réussis/composés) ; le pourcentage est arrondi à l’entier.</p>
 <div class="sc"><table><tr><th rowspan="2">Discipline</th><th rowspan="2">Sur</th><th colspan="2">Garçons</th><th colspan="2">Filles</th><th colspan="2">Total</th></tr><tr><th>Réussis</th><th>%</th><th>Réussis</th><th>%</th><th>Réussis</th><th>%</th></tr>${rows.map(r=>{const c=txCalc(r,per);return`<tr><td class="l">${esc(r.lab)}</td><td>${r.m}</td>${cell(c.M)}${cell(c.F)}${cell(c.T)}</tr>`}).join("")}</table></div><p class="mu np">${psn()}</p></div>`},
+dm(){
+  const th=(D.seuil||50)/100;
+  const DOM_SPECS=[
+    {
+      match:"FRANÇAIS",
+      title:"Français",
+      cols:[
+        {label:"Compréhension",sub:"Compréhension",part:"Ressources"},
+        {label:"Disciplines outils",sub:"Disciplines outils",part:"Ressources"},
+        {label:"Compétence",part:"Compétence"}
+      ]
+    },
+    {
+      match:"MATHÉMATIQUES",
+      title:"Mathématiques",
+      cols:[
+        {label:"Activités numériques",sub:"Activités numériques",part:"Ressources"},
+        {label:"Activités géométriques",sub:"Activités géométriques",part:"Ressources"},
+        {label:"Activités de mesure",sub:"Activités de mesure",part:"Ressources"},
+        {label:"Résolution de problèmes",sub:"Résolution de problèmes",part:"Ressources"},
+        {label:"Compétence",part:"Compétence"}
+      ]
+    },
+    {
+      match:"DM",
+      title:"Découverte du monde",
+      cols:[
+        {label:"Histoire",sub:"Histoire",part:"Ressources"},
+        {label:"Géographie",sub:"Géographie",part:"Ressources"},
+        {label:"IST",sub:"IST",part:"Ressources"},
+        {label:"Compétence",part:"Compétence"}
+      ]
+    },
+    {
+      match:"EDD",
+      title:"Éducation au développement durable",
+      cols:[
+        {label:"Vivre dans son milieu",sub:"Vivre dans son milieu",part:"Ressources"},
+        {label:"Vivre ensemble",sub:"Vivre ensemble",part:"Ressources"},
+        {label:"Compétence",part:"Compétence"}
+      ]
+    },
+    {
+      match:"ARABE",
+      title:"Arabe",
+      cols:[
+        {label:"Arabe",single:true}
+      ]
+    },
+    {
+      match:"ARTS PLASTIQUES",
+      title:"Arts plastiques",
+      cols:[
+        {label:"Arts plastiques",single:true}
+      ]
+    }
+  ];
+
+  const normS=s=>String(s||"").trim().toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");
+
+  function resolveCol(matName,spec){
+    const m=(D.mat||[]).find(x=>normS(x.n)===normS(matName));
+    if(!m)return null;
+    if(spec.single){
+      const p=m.p[0];
+      if(!p)return null;
+      return{key:m.n+"|"+p.l,max:+p.m||10};
+    }
+    for(const p of m.p){
+      if(spec.sub&&Array.isArray(p.s)){
+        const q=p.s.find(z=>normS(z.l)===normS(spec.sub));
+        if(q)return{key:m.n+"|"+p.l+"|"+q.l,max:+q.m||0};
+      }
+      if(!spec.sub&&spec.part&&normS(p.l)===normS(spec.part)){
+        return{key:m.n+"|"+p.l,max:+p.m||0};
+      }
+    }
+    return null;
+  }
+
+  const iaVal=inf("ia")||"Tamba";
+  const iefVal=inf("ief")||"Tamba";
+  const codecVal=D.info.codec||"Dialacoto";
+  const ecoleVal=D.info.ecole||"Dialacoto 1";
+  const anneeVal=D.info.annee||"2026/2027";
+  const coursVal=D.info.classe||"";
+  const effVal=D.el.length;
+  const titulaireVal=D.info.maitre||"";
+  const pNotes=D.notes[per]||{};
+
+  const sheetsHtml=DOM_SPECS.map(dom=>{
+    const resolved=dom.cols.map(c=>({...c,ref:resolveCol(dom.match,c)}));
+    const stats=resolved.map(()=>({F:0,M:0,T:0}));
+
+    const studentRows=D.el.map((e,idx)=>{
+      const en=pNotes[e.id]||{};
+      const cells=resolved.map((c,ci)=>{
+        if(!c.ref)return`<td>–</td>`;
+        const raw=en[c.ref.key];
+        if(raw===undefined||raw===""||raw===null)return`<td></td>`;
+        const val=+raw;
+        if(!isNaN(val)&&c.ref.max>0&&val>=c.ref.max*th-1e-9){
+          stats[ci].T++;
+          if(e.s==="F")stats[ci].F++;
+          else if(e.s==="M")stats[ci].M++;
+        }
+        return`<td>${g(val)}</td>`;
+      }).join("");
+      return`<tr><td>${idx+1}</td><td class="l">${esc(e.nom)}</td><td>${esc(e.s||"")}</td>${cells}</tr>`;
+    }).join("")||`<tr><td colspan="${3+resolved.length}">Aucun élève pour l’instant.</td></tr>`;
+
+    const synthHead=`<tr><th>Indicateur</th>${resolved.map(c=>`<th>${esc(c.label)}${c.ref?` (/${c.ref.max})`:""}</th>`).join("")}</tr>`;
+    const synthRows=[
+      ["Filles réussies","F"],
+      ["Garçons réussis","M"],
+      ["Total classe réussis","T"]
+    ].map(([lbl,k])=>`<tr><td class="l"><b>${lbl}</b></td>${stats.map(st=>`<td><b>${st[k]}</b></td>`).join("")}</tr>`).join("");
+
+    return`<div class="dom-sheet">
+      <div class="dom-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div>
+      <div class="dom-hdr">
+        <div class="dom-left">
+          <div><b>IA :</b> ${esc(iaVal)}</div>
+          <div><b>IEF :</b> ${esc(iefVal)}</div>
+          <div><b>CODEC :</b> ${esc(codecVal)}</div>
+          <div><b>École :</b> ${esc(ecoleVal)}</div>
+        </div>
+        <div class="dom-center">
+          <h3>${esc(dom.title)}</h3>
+          <div class="dom-sub">${esc(per)} — Relevé des notes par discipline</div>
+        </div>
+        <div class="dom-right">
+          <div><b>Année scolaire :</b> ${esc(anneeVal)}</div>
+          <div><b>Cours :</b> ${esc(coursVal)}</div>
+          <div><b>Effectif :</b> ${effVal}</div>
+          <div><b>Titulaire :</b> ${esc(titulaireVal)}</div>
+        </div>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th style="width:4%">N°</th>
+            <th style="width:26%">Nom et prénoms</th>
+            <th style="width:5%">Sexe</th>
+            ${resolved.map(c=>`<th>${esc(c.label)}${c.ref?`<br>(/${c.ref.max})`:""}</th>`).join("")}
+          </tr>
+        </thead>
+        <tbody>${studentRows}</tbody>
+      </table>
+      <div class="dom-synth-title">Tableau de synthèse — Nombre de réussis (seuil : ${D.seuil||50} %)</div>
+      <table class="dom-synth">
+        <thead>${synthHead}</thead>
+        <tbody>${synthRows}</tbody>
+      </table>
+    </div>`;
+  }).join("");
+
+  return`<div class="card np">
+    <div class="row">
+      <b>Période :</b>${perSel()}
+      <label class="mu">Seuil de réussite (%) <input type="number" id="seuil" min="1" max="100" value="${D.seuil||50}" style="width:70px"></label>
+      <button class="btn" id="prt">🖨️ Imprimer / PDF (A4 paysage)</button>
+    </div>
+    <p class="mu">Une feuille A4 paysage par domaine (Français, Mathématiques, Découverte du monde, Éducation au développement durable, Arabe, Arts plastiques) avec les notes de chaque discipline et le tableau de synthèse en bas (Filles, Garçons, Total classe).</p>
+  </div>
+  <div class="sc"><div class="dom-sheets">${sheetsHtml}</div></div>`;
+},
 bu(){const pi=PER.indexOf(per),r=ranks(per),ar=pi===2?annRanks():{},has=e=>moy(e.id,per)!=null,list=(bsel==="all"?D.el:D.el.filter(e=>e.id===bsel)).filter(has);
 const eff=D.el.length,onc=Object.keys(r).length;
 const head=`<div class="card np"><div class="row"><b>Période :</b>${perSel()}<select id="bs"><option value="all">Toute la classe</option>${D.el.map(e=>`<option value="${e.id}" ${e.id===bsel?"selected":""}>${esc(e.nom)}${has(e)?"":" — n’a pas composé"}</option>`).join("")}</select><button class="btn" id="prt">Imprimer / PDF</button></div><p class="mu">Un élève sans aucune note pour la composition choisie n’a pas composé : il n’a pas de bulletin. Impression : A4 paysage, 2 bulletins par feuille. Le nom est découpé en prénoms / NOM (dernier mot ou mots en majuscules = NOM).</p></div>`;
@@ -383,7 +607,7 @@ function render(){
     return;
   }
   nav();
-  $("#v").className=tab==="pg"?"pg":"";
+  $("#v").className=tab==="pg"?"pg":(tab==="dm"?"dom-pg":"");
   $("#v").innerHTML=V[tab]();
 }
 
@@ -510,8 +734,8 @@ document.addEventListener("click",e=>{
   const t=e.target.closest("[data-t]");if(t){tab=t.dataset.t;return render()}
   const id=e.target.id;
   if(id==="delall"){const n=D.el.length;if(n&&confirm("⚠️ ATTENTION\n\nVous allez supprimer les "+n+" élève(s) de la liste (tous les prénoms et noms).\n\nCette action est définitive. Conseil : faites d’abord une sauvegarde (bouton « Exporter »).\n\nVoulez-vous vraiment tout supprimer ?")){D.el=[];save();render()}return}
-  if(id==="add"){$("#ta").value.split("\n").map(s=>s.trim()).filter(Boolean).forEach(l=>{const[p,s]=l.split(";");D.el.push({id:uid(),nom:p.trim(),s:nsx(s)})});sortEl();save();render()}
-  const ed=e.target.dataset.edit;if(ed){const el=D.el.find(x=>x.id===ed);if(el){const n=prompt("Modifier le nom de l’élève :",el.nom);if(n===null)return;const sx=prompt("Sexe (F ou M) — laisser vide si inconnu :",el.s||"");if(sx===null)return;if(n.trim())el.nom=n.trim();el.s=nsx(sx);sortEl();save();render()}return}
+  if(id==="add"){$("#ta").value.split("\n").map(s=>s.trim()).filter(Boolean).forEach(l=>{const[p,s,dn,sante,telTuteur]=l.split(";");D.el.push({id:uid(),nom:p.trim(),s:nsx(s),dn:(dn||"").trim(),sante:(sante||"").trim(),telTuteur:(telTuteur||"").trim()})});sortEl();save();render()}
+  const ed=e.target.dataset.edit;if(ed){const el=D.el.find(x=>x.id===ed);if(el){const n=prompt("Modifier le nom de l’élève :",el.nom);if(n===null)return;const sx=prompt("Sexe (F ou M) — laisser vide si inconnu :",el.s||"");if(sx===null)return;const dn=prompt("Date et lieu de naissance :",el.dn||"");if(dn===null)return;const sante=prompt("État de santé :",el.sante||"");if(sante===null)return;const tel=prompt("Numéro de téléphone du tuteur :",el.telTuteur||"");if(tel===null)return;if(n.trim())el.nom=n.trim();el.s=nsx(sx);el.dn=dn.trim();el.sante=sante.trim();el.telTuteur=tel.trim();sortEl();save();render()}return}
   const dl=e.target.dataset.del;if(dl&&confirm("Supprimer cet élève ?")){D.el=D.el.filter(x=>x.id!==dl);save();render()}
   if(id==="nwtoggle"){D.nw=D.nw||{};if(D.nw[day])delete D.nw[day];else D.nw[day]=true;save();render();return}
   const nd=e.target.dataset.nwdel;if(nd){delete NW()[nd];save();render();return}
@@ -519,6 +743,22 @@ document.addEventListener("click",e=>{
   const st=e.target.dataset.st;if(st&&isWD(day)&&!NW()[day]){const d=D.abs[day]=D.abs[day]||{};d[st]=({P:"A",A:"R",R:"P"})[d[st]||"P"];save();render()}
   if(id==="allp"&&isWD(day)&&!NW()[day]){D.abs[day]={};save();render()}
   if(id==="pgord"){pgOrd=pgOrd==="m"?"a":"m";render()}
+  if(id==="dl_el_list"){
+    const iaVal=inf("ia")||"Tamba";
+    const iefVal=inf("ief")||"Tamba";
+    const codecVal=D.info.codec||"Dialacoto";
+    const ecoleVal=D.info.ecole||"Dialacoto 1";
+    const anneeVal=D.info.annee||"2026/2027";
+    const coursVal=D.info.classe||"";
+    const effVal=D.el.length;
+    const titulaireVal=D.info.maitre||"";
+    const rowsHtml=D.el.map((e,i)=>`<tr><td class="c">${i+1}</td><td>${esc(e.nom)}</td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td></tr>`).join("")||`<tr><td colspan="6" class="c">Aucun élève pour l’instant.</td></tr>`;
+    const docHtml=`<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Liste nominative des élèves</title><style>@page{size:A4 landscape;margin:8mm}*{box-sizing:border-box}body{margin:0;background:#fff;color:#000;font:12px/1.3 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.top-flag{text-align:center;margin-bottom:4px}.top-flag img{width:27mm;height:11.7mm;display:inline-block}.hdr-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;margin-bottom:8px;border-bottom:1.5px solid #333;padding-bottom:6px}.left{text-align:left;font-size:12px;line-height:1.35}.center-title{text-align:center;font-weight:bold;font-size:20px;text-transform:uppercase;padding:4px 10px;align-self:center;letter-spacing:.3px}.right{text-align:right;font-size:12px;line-height:1.35}table{width:100%;border-collapse:collapse;margin-top:4px}th,td{border:1px solid #333;padding:4px 6px;text-align:left;font-size:11.5px;color:#000;vertical-align:middle}th{background:#e6e6e6;font-weight:bold;text-align:center}td.c{text-align:center}tr{break-inside:avoid;page-break-inside:avoid}thead{display:table-header-group}</style></head><body><div class="top-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div><div class="hdr-grid"><div class="left"><div><b>IA :</b> ${esc(iaVal)}</div><div><b>IEF :</b> ${esc(iefVal)}</div><div><b>CODEC :</b> ${esc(codecVal)}</div><div><b>École :</b> ${esc(ecoleVal)}</div></div><div class="center-title">Liste nominative des élèves</div><div class="right"><div><b>Année scolaire :</b> ${esc(anneeVal)}</div><div><b>Cours :</b> ${esc(coursVal)}</div><div><b>Effectif :</b> ${effVal}</div><div><b>Titulaire :</b> ${esc(titulaireVal)}</div></div></div><table><thead><tr><th>N°</th><th>Nom et prénoms</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th></tr></thead><tbody>${rowsHtml}</tbody></table><script>window.onload=function(){window.print()}<\/script></body></html>`;
+    const w=window.open("","_blank");
+    if(w){w.document.open();w.document.write(docHtml);w.document.close()}
+    else{dl2("liste-eleves-"+(coursVal||"classe")+".html",docHtml,"text/html;charset=utf-8")}
+    return;
+  }
   if(id==="prt")window.print();
   if(id==="savemat"){const pp=x=>{const i=x.lastIndexOf(":");return i<0?{l:"",m:parseFloat(x)||10}:{l:x.slice(0,i).trim(),m:parseFloat(x.slice(i+1))||10}};D.mat=$("#mat").value.split("\n").map(l=>l.trim()).filter(Boolean).map(l=>{const[n,...r]=l.split(";");return{n:n.trim(),p:r.map(q=>{q=q.trim();const b=q.indexOf("[");if(b>=0&&q.endsWith("]")){const sb=q.slice(b+1,-1).split(",").map(z=>z.trim()).filter(Boolean).map(pp);const o=pp(q.slice(0,b));if(sb.length){o.s=sb;o.m=sb.reduce((a,z)=>a+z.m,0)}return o}return pp(q)})}}).filter(m=>m.p.length);D.sub2=1;save();render()}
   if(id==="csv"){let s="Rang;Nom;Moyenne;Appréciation\n";const r=ranks(per);D.el.forEach(x=>{const m=moy(x.id,per);s+=[r[x.id]||"",x.nom,m==null?"":m.toFixed(2),app(m)].join(";")+"\n"});dl2("resultats-"+per+".csv","\ufeff"+s,"text/csv")}
@@ -808,6 +1048,8 @@ ensureUsers().then(()=>{
     const clone = document.documentElement.cloneNode(true);
     const gate = clone.querySelector("#authGate");
     if(gate) gate.style.display = "flex";
+    const installWrap = clone.querySelector("#authInstallWrap");
+    if(installWrap) installWrap.style.display = "block";
     const lid = clone.querySelector("#loginId");
     if(lid) lid.value = "";
     const lpw = clone.querySelector("#loginPw");
@@ -872,21 +1114,17 @@ ensureUsers().then(()=>{
 
   function mountShortcutControls(){
     ensureAppManifest();
+    const isLoggedIn = typeof curUser !== "undefined" && !!curUser;
 
-    const hdrActions = document.querySelector("header .hdr-actions");
-    if(hdrActions && !hdrActions.querySelector("[data-desktop-shortcut]")){
-      const scBtn = document.createElement("button");
-      scBtn.type = "button";
-      scBtn.className = "btn np";
-      scBtn.setAttribute("data-desktop-shortcut", "1");
-      scBtn.style.cssText = "display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:600";
-      scBtn.innerHTML = SHORTCUT_ICON_SVG + " Raccourci Bureau";
-      hdrActions.insertBefore(scBtn, hdrActions.firstChild);
-    }
+    // Supprimer toute mention ou bouton d'installation/téléchargement dans l'en-tête ou dans le contenu une fois connecté
+    document.querySelectorAll("header [data-desktop-shortcut], header [data-export-app-html], #desktopAppCard").forEach(function(el){
+      el.remove();
+    });
 
     const loginForm = document.querySelector("#loginForm");
-    if(loginForm && !document.querySelector("#authInstallWrap")){
-      const wrap = document.createElement("div");
+    let wrap = document.querySelector("#authInstallWrap");
+    if(loginForm && !wrap){
+      wrap = document.createElement("div");
       wrap.id = "authInstallWrap";
       wrap.style.cssText = "margin-top:12px;padding-top:12px;border-top:1px solid var(--bd)";
       wrap.innerHTML = `
@@ -899,21 +1137,8 @@ ensureUsers().then(()=>{
       loginForm.insertAdjacentElement("afterend", wrap);
     }
 
-    const vEl = document.querySelector("#v");
-    if(vEl && !document.querySelector("#desktopAppCard")){
-      const card = document.createElement("div");
-      card.id = "desktopAppCard";
-      card.className = "card";
-      card.innerHTML = `
-        <h2>🖥️ Raccourci & Application sur le Bureau de l’appareil</h2>
-        <p class="mu">Disponible pour l’<b>Administrateur</b> et chaque <b>Membre</b>. Cliquez sur <b>Raccourci Bureau</b> pour déclencher l’installation directe si prise en charge et télécharger le raccourci <code>Gestion de classe.url</code> à placer sur le Bureau, ou sur <b>Télécharger l’application (.html)</b> pour sauvegarder le fichier autonome.</p>
-        <div class="row" style="margin-bottom:4px">
-          <button type="button" class="btn" data-desktop-shortcut="1" style="display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:600">${SHORTCUT_ICON_SVG} Raccourci Bureau</button>
-          <button type="button" class="btn s" data-export-app-html="1" style="display:inline-flex;align-items:center;gap:6px;margin:0;font-weight:600">${APP_DL_ICON_SVG} Télécharger l’application (.html)</button>
-        </div>
-        <div id="installHelpMsg" class="mu" style="font-size:12px"></div>
-      `;
-      vEl.appendChild(card);
+    if(wrap){
+      wrap.style.display = isLoggedIn ? "none" : "block";
     }
 
     refreshShortcutButtons();
