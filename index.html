@@ -179,7 +179,58 @@ main.pg{page:pg;padding:0}
 .pw-form .field{display:flex;flex-direction:column;gap:4px}
 .pw-form label{font-size:12px;color:var(--mu);font-weight:600}
 
-</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22content%3A%2F%2Fcom.google.android.apps.search.assistant.surfaces.voice.robin.fileprovider%2Fattachments%2FMa_Classe_Application_v6.html%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"></head><body>
+
+@page af_land{size:A4 landscape;margin:6mm}
+.af-pages{display:flex;flex-direction:column;gap:16px}
+.af-page{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:16px;font:12.5px/1.35 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.af-page-body{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;gap:10px}
+.af-page .af-flag{text-align:center;margin-bottom:2px}
+.af-page .af-flag img{width:26mm;height:11.2mm;display:inline-block}
+.af-page .af-hdr{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;border-bottom:2px solid #1b6e4f;padding-bottom:5px;margin-bottom:6px}
+.af-page .af-left{text-align:left;font-size:12px;line-height:1.3}
+.af-page .af-center{text-align:center;align-self:center}
+.af-page .af-center h3{margin:0;font-size:19px;text-transform:uppercase;color:#1b6e4f;letter-spacing:.4px}
+.af-page .af-center .af-sub{font-size:12.5px;font-weight:bold;margin-top:2px}
+.af-page .af-right{text-align:right;font-size:12px;line-height:1.3}
+.af-sec{flex:1 1 auto;display:flex;flex-direction:column;margin-bottom:6px;break-inside:avoid;page-break-inside:avoid}
+.af-sec-title{background:#1b6e4f;color:#fff;font-weight:bold;text-transform:uppercase;font-size:12px;padding:4px 8px;margin-bottom:0;letter-spacing:.3px;flex:0 0 auto}
+.af-page table{width:100%;height:100%;border-collapse:collapse;margin-bottom:0}
+.af-page th,.af-page td{border:1px solid #333;padding:4px 6px;text-align:center;font-size:11.5px;color:#000;text-transform:none;white-space:normal;vertical-align:middle}
+.af-page th{background:#e6ece9;font-weight:bold}
+.af-page td.l{text-align:left}
+.af-page input[type=text],.af-page input[type=number],.af-page select{width:100%;height:100%;min-height:22px;border:0;border-radius:0;background:transparent;color:#000;font:inherit;padding:2px 4px;text-align:center}
+.af-page input[type=text].l{text-align:left}
+.af-page input:focus,.af-page select:focus{background:#fffbe0;outline:1px solid #1b6e4f}
+.af-page .af-pt{display:none}
+.af-grid-2{flex:1 1 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:6px;align-items:stretch}
+.af-grid-2>.af-sec{margin-bottom:0;height:100%}
+@media(max-width:740px){.af-grid-2{grid-template-columns:1fr}}
+.af-duty-list{margin:0;padding-left:16px;text-align:left;font-size:11px;line-height:1.3}
+.af-duty-list li{margin-bottom:2px}
+.af-signs{display:flex;justify-content:space-between;align-items:flex-start;margin-top:10px;padding:6px 24px 0;min-height:95px;font-weight:bold;font-size:13.5px;break-inside:avoid;page-break-inside:avoid}
+.af-signs span{text-decoration:underline}
+@media print{
+main.af-pg{page:af_land;padding:0;max-width:none;margin:0}
+.af-pages{display:block;gap:0}
+.af-page{border:0;border-radius:0;padding:0;width:285mm;min-height:197mm;height:197mm;font-size:9.5pt;display:flex;flex-direction:column;justify-content:space-between;gap:2.5mm;break-after:page;page-break-after:always}
+.af-page:last-child{break-after:auto;page-break-after:auto}
+.af-page-body{flex:1 1 auto;display:flex;flex-direction:column;justify-content:space-between;gap:2.5mm}
+.af-page .af-hdr{margin-bottom:2mm;padding-bottom:2mm}
+.af-page .af-flag{margin-bottom:1mm}
+.af-page .af-flag img{width:22mm;height:9.5mm}
+.af-page .af-center h3{font-size:15pt}
+.af-page .af-center .af-sub,.af-page .af-left,.af-page .af-right{font-size:9.5pt}
+.af-sec{flex:1 1 auto;display:flex;flex-direction:column;margin-bottom:0}
+.af-sec-title{font-size:9pt;padding:2px 6px}
+.af-page table{height:100%}
+.af-page th,.af-page td{font-size:8.5pt;padding:2px 4px}
+.af-page input,.af-page select{display:none!important}
+.af-page .af-pt{display:inline-block!important;width:100%;min-height:12px}
+.af-grid-2{flex:1 1 auto;grid-template-columns:1fr 1fr;gap:4mm;margin-bottom:0;align-items:stretch}
+.af-grid-2>.af-sec{height:100%}
+.af-signs{margin-top:3mm;padding:2mm 12mm 0;min-height:32mm;height:32mm;font-size:10.5pt}
+}
+</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22content%3A%2F%2Fcom.google.android.apps.search.assistant.surfaces.voice.robin.fileprovider%2Fattachments%2FMa_Classe_Application_v8.html%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"></head><body>
 
 <div id="authGate" class="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="authTitle" style="display: flex;">
   <div class="auth-box">
@@ -209,7 +260,7 @@ main.pg{page:pg;padding:0}
 
 <header><div class="hdr-wrap"><div><h1>📚 Gestion de classe</h1><small id="sub"></small></div><div class="hdr-actions"><span id="whoBadge" class="role-badge"></span><button class="btn s np" id="lockBtn" type="button">🔒 Déconnexion</button></div></div></header>
 <nav id="nav"></nav>
-<main id="v" class=""></main>
+<main id="v" class="af-pg"></main>
 <script>
 const K="gestclasse_v2";
 const DATA_STORE_K="gestclasse_isolated_data_v1";
@@ -285,6 +336,7 @@ function normalizeCurrentDataset(){
   if(!D.notes||typeof D.notes!=="object")D.notes={};
   if(!D.abs||typeof D.abs!=="object")D.abs={};
   fixS();
+  ensureAfData();
   migr();
   migr3();
   sortEl();
@@ -307,7 +359,7 @@ const $=s=>document.querySelector(s);
 const save=()=>{const bk=curBucketKey();if(!bk)return;setBucketData(bk,D)};
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const uid=()=>Math.random().toString(36).slice(2,9);
-const TABS=[["el","👥 Élèves"],["pr","✅ Présences"],["no","📝 Notes"],["re","🏆 Résultats"],["tx","📊 Taux de réussite"],["dm","📄 Feuilles domaines"],["bu","🖨️ Bulletins"],["pg","📋 Passage"],["pa","⚙️ Réglages"]];
+const TABS=[["el","👥 Élèves"],["pr","✅ Présences"],["no","📝 Notes"],["re","🏆 Résultats"],["tx","📊 Taux de réussite"],["dm","📄 Feuilles domaines"],["bu","🖨️ Bulletins"],["pg","📋 Passage"],["af","📌 Tableau d'affichage"],["pa","⚙️ Réglages"]];
 const cols=()=>{const a=[];D.mat.forEach(m=>m.p.forEach(p=>a.push({k:m.n+"|"+p.l,n:m.n,l:p.l,m:p.m})));return a};
 const g=x=>String(x).replace(".",",");
 const ncols=()=>{const a=[];D.mat.forEach(m=>m.p.forEach(p=>{if(p.s&&p.s.length){p.s.forEach(q=>a.push({k:m.n+"|"+p.l+"|"+q.l,n:m.n,l:q.l,m:q.m,pk:m.n+"|"+p.l}));a.push({tot:1,k:m.n+"|"+p.l,n:m.n,l:p.l+" (total)",m:p.m})}else a.push({k:m.n+"|"+p.l,n:m.n,l:p.l,m:p.m})}));return a};
@@ -369,6 +421,58 @@ return`<table class="rc"><tr><th></th><th>Effectif total</th><th>Passant(s)</th>
 function txRows(){const o=[];D.mat.forEach(m=>m.p.forEach(p=>{if(p.s&&p.s.length)p.s.forEach(q=>o.push({lab:m.n+" ("+p.l.toLowerCase()+") · "+q.l,k:m.n+"|"+p.l+"|"+q.l,m:q.m}));else o.push({lab:p.l?m.n+" · "+p.l:m.n,k:m.n+"|"+p.l,m:p.m})}));return o}
 function txCalc(r,per){const th=(D.seuil||50)/100,st={M:[0,0],F:[0,0],T:[0,0]};D.el.forEach(e=>{const v=((D.notes[per]||{})[e.id]||{})[r.k];if(v===undefined||v===""||v===null)return;const ok=+v>=r.m*th-1e-9?1:0;st.T[0]+=ok;st.T[1]++;if(e.s==="M"||e.s==="F"){st[e.s][0]+=ok;st[e.s][1]++}});return st}
 function psn(){const n=D.el.filter(e=>e.s!=="M"&&e.s!=="F").length;return n?`${n} élève(s) sans sexe renseigné (M/F) : ils sont comptés dans le total mais pas dans Garçons/Filles. Corrigez-les dans l’onglet Élèves.`:""}
+
+
+function ensureAfData(){
+  if(!D.af||typeof D.af!=="object")D.af={};
+  if(!D.af.stat||typeof D.af.stat!=="object")D.af.stat={};
+  if(!D.af.freq||typeof D.af.freq!=="object")D.af.freq={};
+  if(!D.af.mob||typeof D.af.mob!=="object")D.af.mob={};
+  if(!D.af.man||typeof D.af.man!=="object")D.af.man={};
+  if(!D.af.did||typeof D.af.did!=="object")D.af.did={};
+  if(!Array.isArray(D.af.rec)||D.af.rec.length<6){
+    const old=Array.isArray(D.af.rec)?D.af.rec:[];
+    D.af.rec=Array.from({length:6},(_,i)=>old[i]||{m:"",a:""});
+  }
+  if(!Array.isArray(D.af.chants)||D.af.chants.length<6){
+    const old=Array.isArray(D.af.chants)?D.af.chants:[];
+    D.af.chants=Array.from({length:6},(_,i)=>old[i]||{m:"",a:""});
+  }
+}
+function splitEqually5(list){
+  const groups=[[],[],[],[],[]];
+  list.forEach((item,idx)=>{groups[idx%5].push(item)});
+  return groups;
+}
+function renderAfStatsTable(){
+  ensureAfData();
+  const rows=[["Garçons (M)","M"],["Filles (F)","F"],["Total","T"]];
+  const cols=["eff","pas","red","ab","tot"];
+  return `<table id="af_stat_tbl">
+    <thead>
+      <tr>
+        <th>Catégorie</th>
+        <th>Effectif</th>
+        <th>Passants</th>
+        <th>Redoublants</th>
+        <th>Abandons</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${rows.map(([lbl,rk])=>{
+        const rowData=D.af.stat[rk]||{};
+        return `<tr>
+          <td class="l">${rk==="T"?`<b>${lbl}</b>`:lbl}</td>
+          ${cols.map(ck=>{
+            const val=rowData[ck]??"";
+            return `<td><input type="number" min="0" step="1" data-afstat="${rk}|${ck}" value="${esc(val)}"><span class="af-pt">${esc(val)}</span></td>`;
+          }).join("")}
+        </tr>`;
+      }).join("")}
+    </tbody>
+  </table>`;
+}
 
 const V={
 el(){
@@ -595,6 +699,236 @@ return`<div class="card np"><div class="row"><button class="btn s" id="pgord">${
 <div class="sgn"><span>Maître(sse)</span><span>Directeur(rice)/CE</span><span>CODEC</span><span>I.C.D</span></div>
 <div class="ft2">Bureau Planification, Suivi-Évaluation et Statistiques</div></div></div>
 <p class="mu np" id="psn">${psn()}</p>`},
+af(){
+  ensureAfData();
+  const iaVal=inf("ia")||"Tamba";
+  const iefVal=inf("ief")||"Tamba";
+  const codecVal=D.info.codec||"Dialacoto";
+  const ecoleVal=D.info.ecole||"Dialacoto 1";
+  const anneeVal=D.info.annee||"2026/2027";
+  const coursVal=D.info.classe||"";
+  const titulaireVal=D.info.maitre||"";
+
+  const JOURS=["Lundi","Mardi","Mercredi","Jeudi","Vendredi"];
+  const filles=D.el.filter(e=>e.s==="F");
+  const garcons=D.el.filter(e=>e.s==="M");
+  const fillesGroups=splitEqually5(filles);
+  const garconsGroups=splitEqually5(garcons);
+
+  const fmtNom=(e)=>{
+    const nm=spl(e.nom);
+    const full=(nm.p?nm.p+" "+nm.n:e.nom).trim();
+    return esc(full);
+  };
+
+  // Fréquences mensuelles (manuel : Octobre à Juin + Taux %)
+  const freqCells=MOIS.map(([mm,nm])=>{
+    const savedVal=D.af.freq[mm]!==undefined?String(D.af.freq[mm]):"";
+    return `<td><input type="text" data-affreq="${mm}" value="${esc(savedVal)}" title="${nm}"><span class="af-pt">${esc(savedVal)}</span></td>`;
+  }).join("");
+  const tauxVal=D.af.freq.taux!==undefined?String(D.af.freq.taux):"";
+  const tauxCell=`<td><input type="text" data-affreq="taux" value="${esc(tauxVal)}" title="Taux (%)"><span class="af-pt">${esc(tauxVal)}</span></td>`;
+
+  // Mobiliers : colonnes Désignation | Bon état | Mauvais état
+  const MOB_ITEMS=[
+    ["bureau","Bureau"],
+    ["tables_bancs","Tables-bancs"],
+    ["armoire","Armoire"],
+    ["chaise","Chaise"]
+  ];
+  const mobRows=MOB_ITEMS.map(([k,lbl])=>{
+    const it=D.af.mob[k]||{bon:"",mauvais:""};
+    return `<tr>
+      <td class="l"><b>${esc(lbl)}</b></td>
+      <td><input type="number" min="0" step="1" data-afmob="${k}|bon" value="${esc(it.bon??"")}"><span class="af-pt">${esc(it.bon??"")}</span></td>
+      <td><input type="number" min="0" step="1" data-afmob="${k}|mauvais" value="${esc(it.mauvais??"")}"><span class="af-pt">${esc(it.mauvais??"")}</span></td>
+    </tr>`;
+  }).join("");
+
+  // Matériels didactiques : colonnes Désignation | Bon état | Mauvais état
+  const DID_ITEMS=[
+    ["regle","Règle"],
+    ["compas","Compas"],
+    ["equerre","Équerre"],
+    ["rapporteur","Rapporteur"]
+  ];
+  const didRows=DID_ITEMS.map(([k,lbl])=>{
+    const it=D.af.did[k]||{bon:"",mauvais:""};
+    return `<tr>
+      <td class="l"><b>${esc(lbl)}</b></td>
+      <td><input type="number" min="0" step="1" data-afdid="${k}|bon" value="${esc(it.bon??"")}"><span class="af-pt">${esc(it.bon??"")}</span></td>
+      <td><input type="number" min="0" step="1" data-afdid="${k}|mauvais" value="${esc(it.mauvais??"")}"><span class="af-pt">${esc(it.mauvais??"")}</span></td>
+    </tr>`;
+  }).join("");
+
+  // Manuels : colonnes Discipline | Bon état | Mauvais état
+  const MAN_ITEMS=[
+    ["francais","Français"],
+    ["mathematiques","Mathématiques"],
+    ["dm","Découverte du monde"],
+    ["edd","Éducation au développement durable"],
+    ["paame","PAAME"]
+  ];
+  const manRows=MAN_ITEMS.map(([k,lbl])=>{
+    const it=D.af.man[k]||{bon:"",mauvais:""};
+    return `<tr>
+      <td class="l"><b>${esc(lbl)}</b></td>
+      <td><input type="number" min="0" step="1" data-afman="${k}|bon" value="${esc(it.bon??"")}"><span class="af-pt">${esc(it.bon??"")}</span></td>
+      <td><input type="number" min="0" step="1" data-afman="${k}|mauvais" value="${esc(it.mauvais??"")}"><span class="af-pt">${esc(it.mauvais??"")}</span></td>
+    </tr>`;
+  }).join("");
+
+  // Récitations (6 lignes)
+  const recRows=D.af.rec.slice(0,6).map((r,idx)=>`<tr>
+    <td>${idx+1}</td>
+    <td><input type="text" class="l" data-afrec="${idx}|m" value="${esc(r.m||"")}"><span class="af-pt">${esc(r.m||"")}</span></td>
+    <td><input type="text" class="l" data-afrec="${idx}|a" value="${esc(r.a||"")}"><span class="af-pt">${esc(r.a||"")}</span></td>
+  </tr>`).join("");
+
+  // Chants (6 lignes)
+  const chantRows=D.af.chants.slice(0,6).map((r,idx)=>`<tr>
+    <td>${idx+1}</td>
+    <td><input type="text" class="l" data-afchant="${idx}|m" value="${esc(r.m||"")}"><span class="af-pt">${esc(r.m||"")}</span></td>
+    <td><input type="text" class="l" data-afchant="${idx}|a" value="${esc(r.a||"")}"><span class="af-pt">${esc(r.a||"")}</span></td>
+  </tr>`).join("");
+
+  const headerHtml=`<div class="af-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div>
+    <div class="af-hdr">
+      <div class="af-left">
+        <div><b>IA :</b> ${esc(iaVal)}</div>
+        <div><b>IEF :</b> ${esc(iefVal)}</div>
+        <div><b>CODEC :</b> ${esc(codecVal)}</div>
+        <div><b>École :</b> ${esc(ecoleVal)}</div>
+      </div>
+      <div class="af-center">
+        <h3>Tableau d'affichage</h3>
+        <div class="af-sub">Classe : ${esc(coursVal)} · Année scolaire : ${esc(anneeVal)}</div>
+      </div>
+      <div class="af-right">
+        <div><b>Effectif :</b> ${D.el.length} (${garcons.length} M / ${filles.length} F)</div>
+        <div><b>Titulaire :</b> ${esc(titulaireVal)}</div>
+      </div>
+    </div>`;
+
+  return `<div class="card np">
+    <div class="row" style="justify-content:space-between">
+      <h2 style="margin:0">📌 Tableau d'affichage de la classe</h2>
+      <button class="btn" id="prt" style="margin:0">🖨️ Imprimer / PDF (2 pages A4 paysage)</button>
+    </div>
+    <p class="mu" style="margin:6px 0 0">Saisissez directement vos données dans les tableaux. Les groupes de nettoyage (F) et d’arrosage (M) sont répartis automatiquement à partir de l’onglet <b>Élèves</b>. Impression : <b>2 feuilles A4 paysage</b>.</p>
+  </div>
+  <div class="sc">
+    <div class="af-pages">
+      <div class="af-page">
+        <div class="af-page-body">
+          <div>${headerHtml}</div>
+
+          <div class="af-sec">
+            <div class="af-sec-title">1. Statistiques des élèves</div>
+            ${renderAfStatsTable()}
+          </div>
+
+          <div class="af-sec">
+            <div class="af-sec-title">2. Fréquences mensuelles des élèves</div>
+            <table id="af_freq_tbl">
+              <thead>
+                <tr>
+                  ${MOIS.map(([,nm])=>`<th>${esc(nm)}</th>`).join("")}
+                  <th>Taux (%)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  ${freqCells}
+                  ${tauxCell}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="af-sec">
+            <div class="af-sec-title">3. Nettoyage de la classe par les filles (F)</div>
+            <table>
+              <thead>
+                <tr>${JOURS.map(j=>`<th>${j} (F)</th>`).join("")}</tr>
+              </thead>
+              <tbody>
+                <tr>
+                  ${fillesGroups.map(grp=>`<td style="vertical-align:top">${grp.length?`<ul class="af-duty-list">${grp.map(e=>`<li>${fmtNom(e)} <b>(F)</b></li>`).join("")}</ul>`:""}</td>`).join("")}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="af-sec">
+            <div class="af-sec-title">4. Arrosage par les garçons (M)</div>
+            <table>
+              <thead>
+                <tr>${JOURS.map(j=>`<th>${j} (M)</th>`).join("")}</tr>
+              </thead>
+              <tbody>
+                <tr>
+                  ${garconsGroups.map(grp=>`<td style="vertical-align:top">${grp.length?`<ul class="af-duty-list">${grp.map(e=>`<li>${fmtNom(e)} <b>(M)</b></li>`).join("")}</ul>`:""}</td>`).join("")}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="af-page">
+        <div class="af-page-body">
+          <div class="af-grid-2">
+            <div class="af-sec">
+              <div class="af-sec-title">5. Mobiliers</div>
+              <table>
+                <thead><tr><th>Désignation</th><th style="width:28%">Bon état</th><th style="width:28%">Mauvais état</th></tr></thead>
+                <tbody>${mobRows}</tbody>
+              </table>
+            </div>
+            <div class="af-sec">
+              <div class="af-sec-title">6. Matériels didactiques</div>
+              <table>
+                <thead><tr><th>Désignation</th><th style="width:28%">Bon état</th><th style="width:28%">Mauvais état</th></tr></thead>
+                <tbody>${didRows}</tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="af-sec">
+            <div class="af-sec-title">7. Manuels scolaires</div>
+            <table>
+              <thead><tr><th>Discipline / Manuel</th><th style="width:24%">Bon état</th><th style="width:24%">Mauvais état</th></tr></thead>
+              <tbody>${manRows}</tbody>
+            </table>
+          </div>
+
+          <div class="af-grid-2" style="margin-bottom:0">
+            <div class="af-sec">
+              <div class="af-sec-title">8. Récitations</div>
+              <table>
+                <thead><tr><th style="width:10%">N°</th><th>Morceau</th><th>Auteur</th></tr></thead>
+                <tbody>${recRows}</tbody>
+              </table>
+            </div>
+            <div class="af-sec">
+              <div class="af-sec-title">9. Chants</div>
+              <table>
+                <thead><tr><th style="width:10%">N°</th><th>Morceau</th><th>Auteur</th></tr></thead>
+                <tbody>${chantRows}</tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="af-signs">
+          <span>Le Maître</span>
+          <span>Le Directeur</span>
+        </div>
+      </div>
+    </div>
+  </div>`;
+},
 pa(){const i=D.info;return`<div class="card"><h2>Informations</h2><div class="row"><input data-i="ia" value="${esc(inf("ia"))}" placeholder="IA" size=14><input data-i="ief" value="${esc(inf("ief"))}" placeholder="IEF" size=14></div><div class="row"><input data-i="ecole" value="${esc(i.ecole)}" placeholder="École"><input data-i="classe" value="${esc(i.classe)}" placeholder="Classe" size=8><input data-i="annee" value="${esc(i.annee)}" placeholder="Année" size=10><input data-i="maitre" value="${esc(i.maitre)}" placeholder="Nom du maître"></div></div>
 <div class="card"><h2>Matières et barèmes</h2><p class="mu">Une matière par ligne. Matière en 2 parties : Nom;Partie:barème;Partie:barème. Matière simple : Nom;barème. Pour détailler une partie : Ressources:40[Compréhension:8,Disciplines outils:32] (le barème de la partie est la somme des sous-disciplines).</p><textarea id="mat">${D.mat.map(m=>[m.n,...m.p.map(p=>(p.l?p.l+":"+p.m:p.m)+(p.s&&p.s.length?"["+p.s.map(q=>q.l+":"+q.m).join(",")+"]":""))].join(";")).join("\n")}</textarea><button class="btn" id="savemat">Enregistrer</button></div>
 <div class="card"><h2>Sauvegarde</h2><p class="mu">Chaque compte dispose de son propre espace isolé. Les sauvegardes exportées/importées concernent uniquement votre propre espace.</p><button class="btn" id="exp">Exporter (fichier)</button><label class="btn s" style="display:inline-block">Importer<input type="file" id="imp" accept=".json" class="hide"></label></div>${renderAdminSecurity()}`}};
@@ -607,7 +941,7 @@ function render(){
     return;
   }
   nav();
-  $("#v").className=tab==="pg"?"pg":(tab==="dm"?"dom-pg":"");
+  $("#v").className=tab==="pg"?"pg":(tab==="dm"?"dom-pg":(tab==="af"?"af-pg":""));
   $("#v").innerHTML=V[tab]();
 }
 
@@ -777,11 +1111,69 @@ document.addEventListener("change",e=>{
   if(t.dataset.jc!==undefined){D.jc=D.jc||{};D.jc[t.dataset.jc]=t.value;save();render()}
   if(t.dataset.pp){const[id,k]=t.dataset.pp.split("|");D.pp=D.pp||{};(D.pp[id]=D.pp[id]||{})[k]=t.value;save();if(k!=="pr"){const sp=t.nextElementSibling;if(sp)sp.textContent=t.value}if(k==="pr"){t.className=t.value;const sp=t.nextElementSibling;if(sp)sp.textContent=plab(t.value);$("#psw").innerHTML=psum();$("#psn").textContent=psn()}}
   if(t.dataset.i){D.info[t.dataset.i]=t.value;save();nav()}
+
+
 });
 
 document.addEventListener("input",e=>{
   if(!curUser)return;
   const t=e.target;
+  if(t.dataset.afstat){
+    ensureAfData();
+    const[rk,ck]=t.dataset.afstat.split("|");
+    D.af.stat[rk]=D.af.stat[rk]||{};
+    D.af.stat[rk][ck]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.affreq){
+    ensureAfData();
+    const mm=t.dataset.affreq;
+    D.af.freq[mm]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.afmob){
+    ensureAfData();
+    const[k,f]=t.dataset.afmob.split("|");
+    D.af.mob[k]=D.af.mob[k]||{bon:"",mauvais:""};
+    D.af.mob[k][f]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.afman){
+    ensureAfData();
+    const[k,f]=t.dataset.afman.split("|");
+    D.af.man[k]=D.af.man[k]||{bon:"",mauvais:""};
+    D.af.man[k][f]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.afdid){
+    ensureAfData();
+    const[k,f]=t.dataset.afdid.split("|");
+    D.af.did[k]=D.af.did[k]||{bon:"",mauvais:""};
+    D.af.did[k][f]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.afrec){
+    ensureAfData();
+    const[idx,f]=t.dataset.afrec.split("|");
+    D.af.rec[+idx]=D.af.rec[+idx]||{m:"",a:""};
+    D.af.rec[+idx][f]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+  if(t.dataset.afchant){
+    ensureAfData();
+    const[idx,f]=t.dataset.afchant.split("|");
+    D.af.chants[+idx]=D.af.chants[+idx]||{m:"",a:""};
+    D.af.chants[+idx][f]=t.value;
+    save();
+    const sp=t.nextElementSibling;if(sp)sp.textContent=t.value;
+  }
+
   if(t.dataset.n){const[id,ci]=t.dataset.n.split("|");const x=ncols()[ci];const o=D.notes[per]=D.notes[per]||{};o[id]=o[id]||{};let v=t.value===""?"":Math.min(x.m,Math.max(0,parseFloat(t.value)));o[id][x.k]=v;if(x.pk){const vs=ncols().filter(y=>y.pk===x.pk).map(y=>o[id][y.k]).filter(z=>z!==undefined&&z!=="");o[id][x.pk]=vs.length?vs.reduce((a,z)=>a+(+z),0):"";const tc=document.querySelector(`[data-tot="${id}|${x.pk}"]`);if(tc)tc.innerHTML="<b>"+(vs.length?g(o[id][x.pk]):"")+"</b>"}save();const c=$("#m_"+id);if(c)c.innerHTML="<b>"+f(moy(id,per))+"</b>"}
 });
 
