@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr"><head><meta charset="utf-8">
+<html lang="fr"><head>
+    
+  <style id="claude-scrollbar">@layer claude-scrollbar{*{scrollbar-width:thin}html{scrollbar-color:rgb(128 128 128 / 50%) transparent}}</style><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Gestion de classe</title>
 <style>
@@ -56,24 +58,25 @@ td input[type=number]{width:64px}
 .bl .sg u{display:block}.bl .sg small{display:block;font-weight:normal;color:#444;font-size:.75em;text-decoration:none}
 .hide{display:none}
 @page{size:A4 landscape;margin:0}
-@page el_land{size:A4 landscape;margin:8mm}
+@page el_port{size:A4 portrait;margin:0}
 .el-print-wrap{display:none}
-.el-sheet{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:14px;font:12px/1.3 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
-.el-sheet .el-top-flag{text-align:center;margin-bottom:4px}
-.el-sheet .el-top-flag img{width:27mm;height:11.7mm;display:inline-block}
-.el-sheet .el-hdr-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;margin-bottom:8px;border-bottom:1.5px solid #333;padding-bottom:6px}
-.el-sheet .el-left{text-align:left;font-size:12px;line-height:1.35}
-.el-sheet .el-center-title{text-align:center;font-weight:bold;font-size:20px;text-transform:uppercase;padding:4px 10px;align-self:center;letter-spacing:.3px}
-.el-sheet .el-right{text-align:right;font-size:12px;line-height:1.35}
-.el-sheet table{width:100%;border-collapse:collapse;margin-top:4px}
-.el-sheet th,.el-sheet td{border:1px solid #333;padding:4px 6px;text-align:left;font-size:11.5px;color:#000;text-transform:none;white-space:normal;vertical-align:middle}
-.el-sheet th{background:#e6e6e6;font-weight:bold;text-align:center}
-.el-sheet td.c{text-align:center}
+.el-sheet{background:#fff;color:#000;border:1px solid var(--bd);border-radius:12px;padding:14px;font:12px/1.25 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.el-sheet .el-hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;font-size:12px;line-height:1.4;text-transform:uppercase}
+.el-sheet .el-hdr-left{text-align:left}
+.el-sheet .el-hdr-right{text-align:left;min-width:210px}
+.el-sheet .el-sec-title{font-size:13px;text-transform:uppercase;margin:8px 0 6px;text-align:center}
+.el-sheet table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:2px}
+.el-sheet th,.el-sheet td{border:1px solid #000;padding:3px 5px;font-size:11px;color:#000;text-transform:none;white-space:normal;word-wrap:break-word;vertical-align:middle;height:23.65pt}
+.el-sheet th{font-weight:bold;text-align:left;text-transform:uppercase;background:transparent}
+.el-sheet td{text-align:left}
+.el-sheet td.c{text-align:center}td.nom-b,td.nom-b b,td.nom-b strong{font-weight:700!important;color:#000!important}.el-sheet td.nom-b,.el-sheet td.nom-b b,.el-sheet td.nom-b strong{font-weight:700!important;color:#000!important}
+.el-sheet .el-sigs{display:flex;justify-content:space-around;margin-top:22px;font-weight:bold;font-size:12px;text-transform:uppercase}
+.el-sheet .el-sigs span{text-decoration:underline;text-decoration-thickness:1.5px}
 @media print{
 body.el-printing .card,body.el-printing .sheets,body.el-printing .ps{display:none!important}
-body.el-printing main{page:el_land;padding:0;max-width:none;margin:0}
+body.el-printing main{page:el_port;padding:0;max-width:none;margin:0}
 body.el-printing .el-print-wrap{display:block!important}
-body.el-printing .el-sheet{border:0;border-radius:0;padding:0}
+body.el-printing .el-sheet{border:0;border-radius:0;padding:10mm 12mm}
 body.el-printing .el-sheet tr{break-inside:avoid;page-break-inside:avoid}
 body.el-printing .el-sheet thead{display:table-header-group}
 }
@@ -186,7 +189,17 @@ main.pg{page:pg;padding:0}
 .pw-form .field{display:flex;flex-direction:column;gap:4px}
 .pw-form label{font-size:12px;color:var(--mu);font-weight:600}
 
-</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"></head><body>
+
+/* ---- Onglet Notes : colonne Élève (prénom + nom) et première ligne figées ---- */
+.sc.fzs{max-height:70vh;overflow:auto}
+.fzt,.fz{position:sticky;background:var(--card)}
+.fzt{top:0;z-index:2}
+.fz{left:0;z-index:1}
+th.fz{z-index:3}
+th.fz.fzt{z-index:4}
+.fzl{box-shadow:2px 0 0 var(--bd)}
+@media print{.fz,.fzt{position:static!important;box-shadow:none!important}.sc.fzs{max-height:none!important}}
+</style><link rel="manifest" href="data:application/manifest+json;charset=utf-8,%7B%22name%22%3A%22Gestion%20de%20classe%22%2C%22short_name%22%3A%22Gestion%20classe%22%2C%22description%22%3A%22Application%20de%20gestion%20de%20classe%20%E2%80%94%20Administrateur%20et%20Membre%22%2C%22start_url%22%3A%22.%2F%22%2C%22scope%22%3A%22.%2F%22%2C%22display%22%3A%22standalone%22%2C%22background_color%22%3A%22%23f6f7f9%22%2C%22theme_color%22%3A%22%231b6e4f%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%3Bcharset%3Dutf-8%2C%253Csvg%2520xmlns%253D%2522http%253A%252F%252Fwww.w3.org%252F2000%252Fsvg%2522%2520viewBox%253D%25220%25200%2520192%2520192%2522%253E%253Crect%2520width%253D%2522192%2522%2520height%253D%2522192%2522%2520rx%253D%252236%2522%2520fill%253D%2522%25231b6e4f%2522%252F%253E%253Ctext%2520x%253D%252296%2522%2520y%253D%2522120%2522%2520text-anchor%253D%2522middle%2522%2520font-size%253D%252290%2522%2520font-family%253D%2522system-ui%252Csans-serif%2522%2520fill%253D%2522%2523ffffff%2522%253E%25F0%259F%2593%259A%253C%252Ftext%253E%253C%252Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D"><meta name="theme-color" content="#1b6e4f"><meta name="mobile-web-app-capable" content="yes"><style>.__cwhr-sel{outline:1px solid hsl(40 70% 40%) !important;outline-offset:0;}html[data-cwhr-mode]:not(#__cwhr_),html[data-cwhr-mode] :not(#__cwhr_){cursor:url("data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20width%3D'24'%20height%3D'24'%20viewBox%3D'0%200%2024%2024'%3E%3Cpath%20d%3D'M12%20.5h0A11.5%2011.5%200%200%201%2023.5%2012v0A11.5%2011.5%200%200%201%2012%2023.5H2.5a2%202%200%200%201-2-2V12A11.5%2011.5%200%200%201%2012%20.5Z'%20fill%3D'%23fff'%20stroke%3D'rgba(0%2C0%2C0%2C0.22)'%20stroke-width%3D'1'%2F%3E%3C%2Fsvg%3E") 1 23, url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAACjklEQVR4AbRWS2gaURR9TGpiFTUEWpKQkA+EruqizWcRSBRT/G8KKpXiyo0ra1fVNiDFLmypFUo3iht/iO4Uay1FGwtFECl1p6KWLly4CGqrSMTY+wRFQ7WhGYd7Zu697845b+7M8B6BJh+UxcXFG3a7XeTxeHQAC+C12+1+ZLPZhHgMbp8FjLWxAkaj8U48Hg8lEomfIpEoLBaLLTKZTAd4LJFI3kD8HsZ+xGKxoMFgYI9T+JvAtUAg8FylUn3hcDj8ra0t6vLyMmKxWIhCofSAfZyDMRqXy+Wr1eqvPp/vKYjMAEZsRMDpdN6MRCKf+Xz+8cbGBm2kckIAtXShUGgKh8Mnfr9/Ybh0IKDT6a4vLS19EggE+wwGY7jmUj6TyUTQyv35+fmP0MbBexkISKVS+97e3u1LsU0oAo67Go3G1i/pCZjN5t3Nzc0H/zPzPlH/ip8EWvbQYrHs4hwWmN3e3n62traGfZy7MtbX12fYbPYTIKIQOzs7C6urq/cgINVWVlaO4EtjEXq9nken06mksgMZtJthtVp5xNzcHBsEIEWu0Wg0RKVS2USz2WTigFx6hPCkMTfRarXgB6WQzd/j63Q6bdK+nB7j0KnRaCCCIMpTE4D2oEql8m1qAvV6/VSr1U5PIJvN+qFjv6fyBIVC4ZfD4XgJAmekC9RqNZROp1+FQqESCCDSBWCVO1EoFC8wOQZpAnjm0Wj0O/xX94H4HNAzotvtNnreFU6lUgllMplAMpnclcvlp8NURC6Xi8BLGc5N9NvtNqpWq6hcLqN8Pn8OLUkAMe/g4EAOG4WzizcTJpPpA6zFIpfL9Ra2I45/IRgM2lKp1LtisXjs9XpvHR4eHimVythF4n78BwAA//8r8OPFAAAABklEQVQDAPCY8Oae0TJxAAAAAElFTkSuQmCC") 1 23, default !important;}html[data-cwhr-mode][data-cwhr-composing]:not(#__cwhr_),html[data-cwhr-mode][data-cwhr-composing] :not(#__cwhr_){cursor:default !important;}</style></head><body id="artifacts-component-root-html">
 
 <div id="authGate" class="auth-overlay" role="dialog" aria-modal="true" aria-labelledby="authTitle" style="display: flex;">
   <div class="auth-box">
@@ -395,7 +408,7 @@ return{k,y,jc:has?jc:"",days:open,nw:w.x,nj,a,eff,tot,pct:tot?(1-a/tot)*100:null
 const pc=v=>v==null?"–":v.toFixed(1).replace(".",",")+" %";
 const rk=n=>n==null?"–":n===1?"1er":n+"e";
 function spl(s){const t=String(s).trim().split(/\s+/);if(t.length<2)return{p:"",n:t[0]||""};const up=t.filter(w=>w.length>1&&w===w.toUpperCase()&&w!==w.toLowerCase());if(up.length&&up.length<t.length)return{p:t.filter(w=>!up.includes(w)).join(" "),n:up.join(" ")};return{p:t.slice(0,-1).join(" "),n:t[t.length-1]}}
-const sortEl=()=>{const k=e=>{const w=String(e.nom).trim().split(/\s+/);return[w[1]??w[0],w[0],w.slice(2).join(" ")]};const c=(a,b)=>a.localeCompare(b,"fr",{sensitivity:"base"});return D.el.sort((a,b)=>{const x=k(a),y=k(b);return c(x[0],y[0])||c(x[1],y[1])||c(x[2],y[2])})};
+const sortEl=()=>{const c=(a,b)=>a.localeCompare(b,"fr",{sensitivity:"base"});return D.el.sort((a,b)=>c(splitPrenomNom3(a.nom).n,splitPrenomNom3(b.nom).n))};
 function ann(id){const trimPers=["Composition 1","Composition 2","Composition 3"];const a=trimPers.map(p=>moy(id,p));return a.every(x=>x!=null)?a.reduce((s,x)=>s+x,0)/3:null}
 function mg(id){const a=ann(id);if(a!=null)return a;const trimPers=["Composition 1","Composition 2","Composition 3"];const v=trimPers.map(p=>moy(id,p)).filter(x=>x!=null);return v.length?v.reduce((s,x)=>s+x,0)/v.length:null}
 function pgList(){const L=[...D.el];if(pgOrd!=="m")return L;return L.map((e,i)=>{const m=mg(e.id);return{e,i,k:m==null?-1:Math.round(m*100)}}).sort((a,b)=>b.k-a.k||a.i-b.i).map(x=>x.e)}
@@ -434,6 +447,22 @@ function txRows(){const o=[];D.mat.forEach(m=>m.p.forEach(p=>{if(p.s&&p.s.length
 function txCalc(r,per){const th=(D.seuil||50)/100,st={M:[0,0],F:[0,0],T:[0,0]};D.el.forEach(e=>{const v=((D.notes[per]||{})[e.id]||{})[r.k];if(v===undefined||v===""||v===null)return;const ok=(r.b?+v>=r.m-1e-9:+v>=r.m*th-1e-9)?1:0;st.T[0]+=ok;st.T[1]++;if(e.s==="M"||e.s==="F"){st[e.s][0]+=ok;st[e.s][1]++}});return st}
 function psn(){const n=D.el.filter(e=>e.s!=="M"&&e.s!=="F").length;return n?`${n} élève(s) sans sexe renseigné (M/F) : ils sont comptés dans le total mais pas dans Garçons/Filles. Corrigez-les dans l’onglet Élèves.`:""}
 
+const MVO=[["","—"],["TA","Transfert arrivé"],["TD","Transfert départ"],["AB","Abandon"]];
+const mvlab=k=>k?(MVO.find(o=>o[0]===k)||MVO[0])[1]:"";
+function mvsum(pr){const c=(sx,k)=>D.el.filter(e=>(!sx||e.s===sx)&&(!k||e.mv===k)).length;
+const reel=sx=>c(sx,"")-c(sx,"TD")-c(sx,"AB");
+const R=[["Garçons","M"],["Filles","F"],["Total",""]];
+const tS=pr?' style="border-collapse:collapse;width:auto;margin:4px 0"':' class="rc"';
+const hS=pr?' style="border:1px solid #333;padding:4px 10px;text-align:center;background:#e6e6e6;font-size:11.5px;color:#000"':'';
+const hF=pr?hS:' class="fz fzl"';
+const dS=pr?' style="border:1px solid #333;padding:4px 10px;text-align:center;font-size:11.5px;color:#000"':'';
+const lS=pr?' style="border:1px solid #333;padding:4px 10px;text-align:left;font-size:11.5px;color:#000"':' class="l fz fzl"';
+const tbl=`<table${tS}><tr><th${hF}></th><th${hS}>Effectif total</th><th${hS}>Transferts arrivés</th><th${hS}>Transferts départ</th><th${hS}>Abandons</th><th${hS}>Effectif réel</th></tr>`+R.map(([n,sx])=>`<tr><td${lS}><b>${n}</b></td>`+["","TA","TD","AB"].map(k=>`<td${dS}>${sx?c(sx,k):`<b>${c("",k)}</b>`}</td>`).join("")+`<td${dS}>${sx?reel(sx):`<b>${reel("")}</b>`}</td></tr>`).join("")+`</table>`;
+return(pr?'<p style="margin:10px 0 2px;font-weight:bold;font-size:12px;color:#000">Mouvements de l’effectif</p>'+tbl:`<div class="sc">${tbl}</div>`)}
+function sigHtml(){const u='style="text-decoration:underline"';return`<div style="display:flex;justify-content:space-between;margin-top:36px;font-size:13px;font-weight:bold;color:#000"><span ${u}>Le Maître</span><span ${u}>Le Directeur</span></div>`}
+const splitPrenomNom3=s=>{const t=String(s||"").trim().split(/\s+/).filter(Boolean);if(t.length<2)return{p:"",n:t[0]||""};if(t.length===2)return{p:t[0],n:t[1]};return{p:t.slice(0,2).join(" "),n:t.slice(2).join(" ")}};
+const pn12=splitPrenomNom3;
+const splitNom12=splitPrenomNom3;
 const V={
 el(){
 const iaVal=inf("ia")||"Tamba";
@@ -444,24 +473,24 @@ const anneeVal=D.info.annee||"2026/2027";
 const coursVal=D.info.classe||"";
 const effVal=D.el.length;
 const titulaireVal=D.info.maitre||"";
-const printable=`<div class="el-print-wrap"><div class="el-sheet"><div class="el-top-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div><div class="el-hdr-grid"><div class="el-left"><div><b>IA :</b> ${esc(iaVal)}</div><div><b>IEF :</b> ${esc(iefVal)}</div><div><b>CODEC :</b> ${esc(codecVal)}</div><div><b>École :</b> ${esc(ecoleVal)}</div></div><div class="el-center-title">Liste nominative des élèves</div><div class="el-right"><div><b>Année scolaire :</b> ${esc(anneeVal)}</div><div><b>Cours :</b> ${esc(coursVal)}</div><div><b>Effectif :</b> ${effVal}</div><div><b>Titulaire :</b> ${esc(titulaireVal)}</div></div></div><table><thead><tr><th>N°</th><th>Nom et prénoms</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th></tr></thead><tbody>${D.el.map((e,i)=>`<tr><td class="c">${i+1}</td><td>${esc(e.nom)}</td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td></tr>`).join("")||`<tr><td colspan="6" class="c">Aucun élève pour l’instant.</td></tr>`}</tbody></table></div></div>`;
-return`<div class="card np"><h2>Ajouter des élèves</h2><p class="mu">Collez la liste (un nom par ligne). Champs facultatifs séparés par « ; » : <code>Nom;Sexe;Date et lieu de naissance;État de santé;Tél. tuteur</code>.</p><textarea id="ta" placeholder="Awa Diop;F;12/04/2016 à Tambacounda;RAS;77 123 45 67&#10;Moussa Ba;M;05/09/2015 à Dialacoto;Asthme léger;76 987 65 43"></textarea><button class="btn" id="add">Ajouter</button></div>
-<div class="card"><div class="row np" style="justify-content:space-between;margin-bottom:8px"><h2>Liste de la classe (${D.el.length})</h2><div class="row" style="margin:0">${D.el.length?`<button class="btn" id="dl_el_list" style="margin:0">⬇️ Télécharger la liste (A4 paysage)</button><button class="btn d" id="delall" style="border:1px solid var(--wa);margin:0">🗑️ Supprimer toute la liste</button>`:""}</div></div><div class="sc"><table><tr><th>N°</th><th>Nom</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th><th class="np"></th></tr>${D.el.map((e,i)=>`<tr><td>${i+1}</td><td>${esc(e.nom)}</td><td>${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td><td class="np"><button class="btn s" data-edit="${e.id}">Modifier</button><button class="btn d" data-del="${e.id}">Supprimer</button></td></tr>`).join("")||`<tr><td colspan=7 class="mu">Aucun élève pour l’instant.</td></tr>`}</table></div></div>`+printable},
+const printable=`<div class="el-print-wrap"><div class="el-sheet"><div class="el-hdr-top"><div class="el-hdr-left"><div>IA : <b>${esc(iaVal)}</b></div><div>IEF : <b>${esc(iefVal)}</b></div><div>CODEC : <b>${esc(codecVal)}</b></div><div>ECOLE : <b>${esc(ecoleVal)}</b></div></div><div class="el-hdr-right"><div>ANNÉE : <b>${esc(anneeVal)}</b></div><div>EFFECTIF : <b>${effVal}</b></div><div>COURS : <b>${esc(coursVal)}</b></div><div>TITULAIRE : <b>${esc(titulaireVal)}</b></div></div></div><div class="el-sec-title">A/<b>LISTE NOMINATIVE DES ÉLÈVES</b></div><table><colgroup><col style="width:7%"><col style="width:19%"><col style="width:16%"><col style="width:7%"><col style="width:22%"><col style="width:15%"><col style="width:14%"></colgroup><thead><tr><th>N°</th><th>PRÉNOM</th><th>NOM</th><th>SEXE</th><th>DATE ET LIEU DE NAISSANCE</th><th>ÉTAT DE SANTÉ</th><th>TÉL. TUTEUR</th></tr></thead><tbody>${D.el.map((e,i)=>{const pn=splitNom12(e.nom);return`<tr><td>${i+1}</td><td>${esc(pn.p)}</td><td class="nom-b" style="font-weight:700"><b>${esc(pn.n)}</b></td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td class="c">${esc(e.sante||"")}</td><td class="c">${esc(e.telTuteur||"")}</td></tr>`}).join("")||`<tr><td colspan="7" class="c">Aucun élève pour l’instant.</td></tr>`}</tbody></table><div class="el-sigs"><span>LE MAÎTRE</span><span>LE DIRECTEUR</span></div></div></div>`;
+return`<div class="card np"><h2>Ajouter des élèves</h2><p class="mu">Collez la liste (un nom par ligne). Champs facultatifs séparés par « ; » : <code>Nom;Sexe;Date et lieu de naissance;État de santé;Tél. tuteur</code>.</p><textarea id="ta" placeholder="Mamadou Lamine Diop;M;12/04/2016 à Tambacounda;RAS;77 123 45 67&#10;Awa Diop;F;05/09/2015 à Dialacoto;Asthme léger;76 987 65 43"></textarea><button class="btn" id="add">Ajouter</button></div>
+<div class="card"><div class="row np" style="justify-content:space-between;margin-bottom:8px"><h2>Liste de la classe (${D.el.length})</h2><div class="row" style="margin:0">${D.el.length?`<button class="btn" id="prt_el" style="margin:0">🖨️ Imprimer la liste</button><button class="btn s" id="dl_el_list" style="margin:0">⬇️ Télécharger la liste</button><button class="btn d" id="delall" style="border:1px solid var(--wa);margin:0">🗑️ Supprimer toute la liste</button>`:""}</div></div><div class="np" id="mvw" style="margin-bottom:10px"><h3 style="margin:4px 0">Mouvements de l’effectif</h3>${mvsum()}</div><div class="sc fzs"><table><tr><th class="fzt">N°</th><th class="fzt">Prénom</th><th class="fzt">Nom</th><th class="fzt">Sexe</th><th class="fzt">Date et lieu de naissance</th><th class="fzt">État de santé</th><th class="fzt">Tél. tuteur</th><th class="fzt np">Situation</th><th class="fzt np"></th></tr>${D.el.map((e,i)=>{const pn=splitNom12(e.nom);return`<tr><td>${i+1}</td><td>${esc(pn.p)}</td><td class="nom-b" style="font-weight:700"><b>${esc(pn.n)}</b></td><td>${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td><td class="np"><select data-mv="${e.id}">${MVO.map(o=>`<option value="${o[0]}"${(e.mv||"")===o[0]?" selected":""}>${o[1]}</option>`).join("")}</select></td><td class="np"><button class="btn s" data-edit="${e.id}">Modifier</button><button class="btn d" data-del="${e.id}">Supprimer</button></td></tr>`}).join("")||`<tr><td colspan=9 class="mu">Aucun élève pour l’instant.</td></tr>`}</table></div></div>`+printable},
 pr(){const d=D.abs[day]||{},we=!isWD(day),nwd=!!NW()[day],off=we||nwd,act=D.el.filter(e=>!e.ex),nex=D.el.length-act.length;const cnt=k=>act.filter(e=>d[e.id]===k).length;const nwl=Object.keys(NW()).sort();
 return`<div class="card"><div class="row"><b>Date :</b><input type="date" id="day" value="${day}"><button class="btn s" id="allp"${off?" disabled":""}>Tous présents</button>${we?"":`<button class="btn ${nwd?"":"s"}" id="nwtoggle">${nwd?"✅ Rétablir : jour ouvrable":"🚫 Jour non ouvrable"}</button>`}</div>
 ${off?`<p class="mu"><b>${we?"Week-end":"Jour non ouvrable"} :</b> ce jour n’est pas compté dans les jours ouvrables du mois. Les présences ne sont pas saisies.</p>`:`<div class="kp"><div><b>${act.length-cnt("A")-cnt("R")}</b>présents</div><div><b>${cnt("A")}</b>absents</div><div><b>${cnt("R")}</b>retards</div></div>
 <p class="mu">Touchez le bouton pour changer : P (présent) → A (absent) → R (retard).</p>`}
 <p class="mu">Effectif : <b>${act.length}</b>${nex?` (${nex} exclu(s) temporairement, non compté(s))`:""}. Le bouton « Exclure » retire un élève de l’effectif ; « Réintégrer » le remet.</p>
-<div class="sc"><table><tr><th>Élève</th><th>Statut</th><th>Total abs.</th><th>Total ret.</th><th>Exclusion</th></tr>${D.el.map(e=>{const s=d[e.id]||"P",t=absTot(e.id);const c=e.ex?`<span class="mu">Exclu</span>`:off?"–":`<button class="st ${s}" data-st="${e.id}">${s}</button>`;return`<tr${e.ex?` style="opacity:.55"`:""}><td>${esc(e.nom)}</td><td>${c}</td><td>${t.a}</td><td>${t.r}</td><td><button class="btn ${e.ex?"s":"d"}" data-ex="${e.id}" style="margin:0${e.ex?"":";border:1px solid var(--wa)"}">${e.ex?"Réintégrer":"Exclure"}</button></td></tr>`}).join("")}</table></div></div>`+(nwl.length?`<div class="card"><h2>Jours non ouvrables signalés (${nwl.length})</h2><div class="row">${nwl.map(k=>`<span style="border:1px solid var(--bd);border-radius:8px;padding:2px 4px 2px 8px">${fd(k)}<button class="btn d" data-nwdel="${k}" style="margin:0;padding:0 6px" title="Retirer">✕</button></span>`).join("")}</div></div>`:"")+(()=>{const ms=MOIS.map(([mm,nm])=>({nm,...mstat(mm)}));const T=ms.reduce((o,x)=>({a:o.a+x.a,t:o.t+x.tot}),{a:0,t:0});
+<div class="sc"><table><tr><th>Prénom</th><th>Nom</th><th>Statut</th><th>Total abs.</th><th>Total ret.</th><th>Exclusion</th></tr>${D.el.map(e=>{const s=d[e.id]||"P",t=absTot(e.id),w=pn12(e.nom);const c=e.ex?`<span class="mu">Exclu</span>`:off?"–":`<button class="st ${s}" data-st="${e.id}">${s}</button>`;return`<tr${e.ex?` style="opacity:.55"`:""}><td>${esc(w.p)}</td><td>${esc(w.n)}</td><td>${c}</td><td>${t.a}</td><td>${t.r}</td><td><button class="btn ${e.ex?"s":"d"}" data-ex="${e.id}" style="margin:0${e.ex?"":";border:1px solid var(--wa)"}">${e.ex?"Réintégrer":"Exclure"}</button></td></tr>`}).join("")}</table></div></div>`+(nwl.length?`<div class="card"><h2>Jours non ouvrables signalés (${nwl.length})</h2><div class="row">${nwl.map(k=>`<span style="border:1px solid var(--bd);border-radius:8px;padding:2px 4px 2px 8px">${fd(k)}<button class="btn d" data-nwdel="${k}" style="margin:0;padding:0 6px" title="Retirer">✕</button></span>`).join("")}</div></div>`:"")+(()=>{const ms=MOIS.map(([mm,nm])=>({nm,...mstat(mm)}));const T=ms.reduce((o,x)=>({a:o.a+x.a,t:o.t+x.tot}),{a:0,t:0});
 return`<div class="card"><h2>Pourcentage d’élèves présents par mois</h2><p class="mu">Jours ouvrables = lundi à vendredi du mois, moins les jours signalés « non ouvrables » (les jours fériés ne sont pas retirés automatiquement : signalez-les avec le bouton). % présents = 1 − absences ÷ (effectif × jours ouvrables). Vous pouvez corriger le nombre de jours dans la case (la valeur grise est le calcul automatique). Les retards comptent comme présents.</p>
 <div class="sc"><table><tr><th>Mois</th><th>Effectif</th><th>Jours ouvrables</th><th>Non ouvrables</th><th>Absences</th><th>% présents</th></tr>${ms.map(x=>`<tr><td>${x.nm} ${x.y}</td><td>${x.eff}</td><td><input type="number" min="0" step="1" inputmode="numeric" data-jc="${x.k}" placeholder="${x.days}" value="${x.jc}"></td><td>${x.nw}</td><td>${x.a}</td><td><b>${pc(x.pct)}</b></td></tr>`).join("")}<tr><td><b>Année</b></td><td>${D.el.filter(e=>!e.ex).length}</td><td>${ms.reduce((s,x)=>s+x.nj,0)}</td><td>${ms.reduce((s,x)=>s+x.nw,0)}</td><td>${T.a}</td><td><b>${pc(T.t?(1-T.a/T.t)*100:null)}</b></td></tr></table></div></div>`})()},
 no(){const hasNotes=Object.values(D.notes[per]||{}).some(en=>en&&Object.values(en).some(v=>v!==""&&v!==undefined&&v!==null));return`<div class="card"><div class="row" style="justify-content:space-between"><div><b>Période :</b>${perSel()}</div>${hasNotes?`<button class="btn d" id="delnotes" style="border:1px solid var(--wa);margin:0">🗑️ Supprimer toutes les notes (${esc(per)})</button>`:""}</div><p class="mu">Chaque note est limitée à son barème. Enregistrement automatique. En <b>Français → Ressources</b> (40 pts = Compréhension 8 + Disciplines outils 32), <b>Fluidité</b> (5 pts) est un <b>cadeau</b> pour les meilleurs lecteurs : elle s’ajoute au total, mais <b>Ressources ne dépasse jamais 40</b>. Moyenne sur 10 = total des points ÷ total des barèmes × 10 (coefficient unique : 1).</p>
-<div class="sc"><table><tr><th>Élève</th>${ncols().map(x=>`<th>${esc(x.n)}<br>${esc(x.l)} /${x.m}${x.b?" (cadeau)":""}</th>`).join("")}<th>Moy./10</th></tr>${D.el.map(e=>{const n=(D.notes[per]||{})[e.id]||{};return`<tr><td>${esc(e.nom)}</td>${ncols().map((x,i)=>x.tot?`<td data-tot="${e.id}|${x.k}"><b>${n[x.k]!==undefined&&n[x.k]!==""?g(+n[x.k]):""}</b></td>`:`<td><input type="number" min="0" max="${x.m}" step="0.25" inputmode="decimal" data-n="${e.id}|${i}" value="${n[x.k]??""}"></td>`).join("")}<td id="m_${e.id}"><b>${f(moy(e.id,per))}</b></td></tr>`}).join("")}</table></div></div>`},
+<div class="sc"><table><tr><th>Prénom</th><th>Nom</th>${ncols().map(x=>`<th>${esc(x.n)}<br>${esc(x.l)} /${x.m}${x.b?" (cadeau)":""}</th>`).join("")}<th>Moy./10</th></tr>${D.el.map(e=>{const n=(D.notes[per]||{})[e.id]||{} ,w=pn12(e.nom);return`<tr><td>${esc(w.p)}</td><td>${esc(w.n)}</td>${ncols().map((x,i)=>x.tot?`<td data-tot="${e.id}|${x.k}"><b>${n[x.k]!==undefined&&n[x.k]!==""?g(+n[x.k]):""}</b></td>`:`<td><input type="number" min="0" max="${x.m}" step="0.25" inputmode="decimal" data-n="${e.id}|${i}" value="${n[x.k]??""}"></td>`).join("")}<td id="m_${e.id}"><b>${f(moy(e.id,per))}</b></td></tr>`}).join("")}</table></div></div>`},
 re(){const r=ranks(per),L=D.el.map(e=>({e,m:moy(e.id,per)}));const ok=L.filter(x=>x.m!=null);const cm=ok.length?ok.reduce((a,x)=>a+x.m,0)/ok.length:null;
 const ad=ok.filter(x=>x.m>=5).length;const srt=[...ok].sort((a,b)=>b.m-a.m);
 return`<div class="card"><div class="row"><b>Période :</b>${perSel()}<button class="btn s np" id="csv">Exporter CSV</button><button class="btn np" id="prt">Imprimer</button></div>
 <div class="kp"><div><b>${f(cm)}</b>moyenne de classe</div><div><b>${ok.length?Math.round(ad/ok.length*100)+" %":"–"}</b>≥ 5/10 (${ad}/${ok.length})</div><div><b>${srt[0]?f(srt[0].m):"–"}</b>meilleure</div><div><b>${srt.length?f(srt[srt.length-1].m):"–"}</b>plus faible</div></div>
-<div class="sc"><table><tr><th>Rang</th><th>Élève</th><th>Moyenne</th><th>Appréciation</th></tr>${[...L].sort((a,b)=>(r[a.e.id]||999)-(r[b.e.id]||999)).map(x=>`<tr><td>${r[x.e.id]||"–"}</td><td>${esc(x.e.nom)}</td><td class="${x.m!=null&&x.m<5?"low":""}">${f(x.m)}</td><td>${app(x.m)}</td></tr>`).join("")}</table></div></div>`},
+<div class="sc"><table><tr><th>Rang</th><th>Prénom</th><th>Nom</th><th>Moyenne</th><th>Appréciation</th></tr>${[...L].sort((a,b)=>(r[a.e.id]||999)-(r[b.e.id]||999)).map(x=>{const w=pn12(x.e.nom);return`<tr><td>${r[x.e.id]||"–"}</td><td>${esc(w.p)}</td><td>${esc(w.n)}</td><td class="${x.m!=null&&x.m<5?"low":""}">${f(x.m)}</td><td>${app(x.m)}</td></tr>`}).join("")}</table></div></div>`},
 tx(){const th=D.seuil||50,rows=txRows(),comp=D.el.filter(e=>moy(e.id,per)!=null),cg=comp.filter(e=>e.s==="M").length,cf=comp.filter(e=>e.s==="F").length;
 const cell=(a)=>`<td>${a[1]?a[0]+"/"+a[1]:"–"}</td><td><b>${a[1]?Math.round(a[0]/a[1]*100)+" %":"–"}</b></td>`;
 return`<div class="card"><div class="row np"><b>Période :</b>${perSel()}<label class="mu">Seuil de réussite (%) <input type="number" id="seuil" min="1" max="100" value="${th}" style="width:70px"></label><button class="btn" id="prt">Imprimer</button></div>
@@ -726,8 +755,8 @@ dm(){
         }
         return`<td>${g(val)}</td>`;
       }).join("");
-      return`<tr><td>${idx+1}</td><td class="l">${esc(e.nom)}</td><td>${esc(e.s||"")}</td>${cells}</tr>`;
-    }).join("")||`<tr><td colspan="${3+resolved.length}">Aucun élève pour l’instant.</td></tr>`;
+      const w=pn12(e.nom);return`<tr><td>${idx+1}</td><td class="l">${esc(w.p)}</td><td class="l">${esc(w.n)}</td><td>${esc(e.s||"")}</td>${cells}</tr>`;
+    }).join("")||`<tr><td colspan="${4+resolved.length}">Aucun élève pour l’instant.</td></tr>`;
 
     const synthHead=`<tr><th>Indicateur</th>${resolved.map(c=>`<th>${esc(c.label)}${c.ref?` (/${c.ref.max})`:""}${c.ref&&c.ref.bonus?" – cadeau : 5/5 compté":""}</th>`).join("")}</tr>`;
     const synthRows=[
@@ -760,7 +789,8 @@ dm(){
         <thead>
           <tr>
             <th style="width:4%">N°</th>
-            <th style="width:26%">Nom et prénoms</th>
+            <th style="width:13%">Prénom</th>
+            <th style="width:13%">Nom</th>
             <th style="width:5%">Sexe</th>
             ${resolved.map(c=>`<th>${esc(c.label)}${c.ref?`<br>(/${c.ref.max})`:""}</th>`).join("")}
           </tr>
@@ -786,7 +816,7 @@ dm(){
   <div class="sc"><div class="dom-sheets">${sheetsHtml}</div></div>`;
 },
 bu(){
-  const head=`<div class="card np"><div class="row"><b>Période :</b>${perSel()}${isTestPer(per)?"":`<select id="bs"><option value="all">Toute la classe</option>${D.el.map(e=>{const has=moy(e.id,per)!=null;return`<option value="${e.id}" ${e.id===bsel?"selected":""}>${esc(e.nom)}${has?"":" — n’a pas composé"}</option>`}).join("")}</select><button class="btn" id="prt">Imprimer / PDF</button>`}</div><p class="mu">${isTestPer(per)?"Le prétest et le post-test n’ont pas de bulletins.":"Un élève sans aucune note pour la composition choisie n’a pas composé : il n’a pas de bulletin. Impression : A4 paysage, 2 bulletins par feuille. Le nom est découpé en prénoms / NOM (dernier mot ou mots en majuscules = NOM)."}</p></div>`;
+  const head=`<div class="card np"><div class="row"><b>Période :</b>${perSel()}${isTestPer(per)?"":`<select id="bs"><option value="all">Toute la classe</option>${D.el.map(e=>{const has=moy(e.id,per)!=null;return`<option value="${e.id}" ${e.id===bsel?"selected":""}>${esc(e.nom)}${has?"":" — n’a pas composé"}</option>`}).join("")}</select><button class="btn" id="prt">Imprimer / PDF</button>`}</div><p class="mu">${isTestPer(per)?"Le prétest et le post-test n’ont pas de bulletins.":"Un élève sans aucune note pour la composition choisie n’a pas composé : il n’a pas de bulletin. Impression : A4 paysage, 2 bulletins par feuille. Les deux premiers mots sont pris comme prénoms et le mot suivant comme nom."}</p></div>`;
   if(isTestPer(per))return head+`<div class="card"><p class="mu">Aucun bulletin n’est généré pour <b>${esc(per)}</b>.</p></div>`;
   const pi=PER.indexOf(per),r=ranks(per),ar=pi===2?annRanks():{},has=e=>moy(e.id,per)!=null,list=(bsel==="all"?D.el:D.el.filter(e=>e.id===bsel)).filter(has);
   const eff=D.el.length,onc=Object.keys(r).length;
@@ -815,6 +845,39 @@ pa(){const i=D.info;return`<div class="card"><h2>Informations</h2><div class="ro
 <div class="card"><h2>Matières et barèmes</h2><p class="mu">Une matière par ligne. Matière en 2 parties : Nom;Partie:barème;Partie:barème. Matière simple : Nom;barème. Pour détailler une partie : Ressources:40[Compréhension:8,Disciplines outils:32,Fluidité:5*] (le * marque une sous-discipline « cadeau » : sa note s’ajoute mais n’entre pas dans le barème de la partie, qui ne dépasse jamais le barème indiqué).</p><textarea id="mat">${D.mat.map(m=>[m.n,...m.p.map(p=>(p.l?p.l+":"+p.m:p.m)+(p.s&&p.s.length?"["+p.s.map(q=>q.l+":"+q.m+(q.b?"*":"")).join(",")+"]":""))].join(";")).join("\n")}</textarea><button class="btn" id="savemat">Enregistrer</button></div>
 <div class="card"><h2>Sauvegarde</h2><p class="mu">Chaque compte dispose de son propre espace isolé. Les sauvegardes exportées/importées concernent uniquement votre propre espace.</p><button class="btn" id="exp">Exporter (fichier)</button><label class="btn s" style="display:inline-block">Importer<input type="file" id="imp" accept=".json" class="hide"></label></div>${renderAdminSecurity()}`}};
 
+function freezeNameCols(){
+  try{
+    if(tab==="no"){
+      document.querySelectorAll("#v .sc").forEach(sc=>{
+        const tb=sc.querySelector("table");if(!tb)return;
+        const hr=tb.rows[0];if(!hr)return;
+        const NM=/^(élève|eleve|nom|prénom|prenom|prénom\(s\)|prénoms?|nom et prénoms)$/i;
+        const ix=[...hr.cells].findIndex(c=>NM.test(c.textContent.trim()));
+        sc.classList.add("fzs");
+        [...hr.cells].forEach(c=>c.classList.add("fzt"));
+        [...tb.rows].forEach(r=>{
+          const c=r.cells[ix];if(ix<0||!c||r.cells.length<=ix)return;
+          c.classList.add("fz","fzl");
+        });
+      });
+    }else if(tab==="pr"||tab==="re"||tab==="tx"){
+      document.querySelectorAll("#v .sc").forEach(sc=>{
+        const tb=sc.querySelector("table");if(!tb||!tb.rows.length)return;
+        sc.classList.add("fzs");
+        const r0=tb.rows[0];
+        [...r0.cells].forEach(c=>c.classList.add("fzt"));
+        if(tab==="tx"&&tb.rows[1]){
+          const h0=r0.getBoundingClientRect().height||r0.offsetHeight;
+          [...tb.rows[1].cells].forEach(c=>{c.classList.add("fzt");c.style.top=h0+"px"});
+        }
+      });
+    }
+  }catch(e){}
+}
+window.addEventListener("resize",()=>{try{freezeNameCols()}catch(e){}});
+window.addEventListener("beforeprint",()=>{if(curUser&&tab==="el")document.body.classList.add("el-printing")});
+window.addEventListener("afterprint",()=>{document.body.classList.remove("el-printing")});
+
 function render(){
   if(!curUser){
     $("#nav").innerHTML="";
@@ -825,6 +888,7 @@ function render(){
   nav();
   $("#v").className=tab==="pg"?"pg":(tab==="dm"?"dom-pg":"");
   $("#v").innerHTML=V[tab]();
+  freezeNameCols();
 }
 
 async function sha256Hex(str){
@@ -960,6 +1024,12 @@ document.addEventListener("click",e=>{
   const st=e.target.dataset.st;if(st&&isWD(day)&&!NW()[day]){const d=D.abs[day]=D.abs[day]||{};d[st]=({P:"A",A:"R",R:"P"})[d[st]||"P"];save();render()}
   if(id==="allp"&&isWD(day)&&!NW()[day]){D.abs[day]={};save();render()}
   if(id==="pgord"){pgOrd=pgOrd==="m"?"a":"m";render()}
+  if(id==="prt_el"){
+    document.body.classList.add("el-printing");
+    window.print();
+    setTimeout(()=>document.body.classList.remove("el-printing"),500);
+    return;
+  }
   if(id==="dl_el_list"){
     const iaVal=inf("ia")||"Tamba";
     const iefVal=inf("ief")||"Tamba";
@@ -969,11 +1039,9 @@ document.addEventListener("click",e=>{
     const coursVal=D.info.classe||"";
     const effVal=D.el.length;
     const titulaireVal=D.info.maitre||"";
-    const rowsHtml=D.el.map((e,i)=>`<tr><td class="c">${i+1}</td><td>${esc(e.nom)}</td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td>${esc(e.sante||"")}</td><td>${esc(e.telTuteur||"")}</td></tr>`).join("")||`<tr><td colspan="6" class="c">Aucun élève pour l’instant.</td></tr>`;
-    const docHtml=`<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title>Liste nominative des élèves</title><style>@page{size:A4 landscape;margin:8mm}*{box-sizing:border-box}body{margin:0;background:#fff;color:#000;font:12px/1.3 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.top-flag{text-align:center;margin-bottom:4px}.top-flag img{width:27mm;height:11.7mm;display:inline-block}.hdr-grid{display:grid;grid-template-columns:1fr auto 1fr;align-items:start;gap:10px;margin-bottom:8px;border-bottom:1.5px solid #333;padding-bottom:6px}.left{text-align:left;font-size:12px;line-height:1.35}.center-title{text-align:center;font-weight:bold;font-size:20px;text-transform:uppercase;padding:4px 10px;align-self:center;letter-spacing:.3px}.right{text-align:right;font-size:12px;line-height:1.35}table{width:100%;border-collapse:collapse;margin-top:4px}th,td{border:1px solid #333;padding:4px 6px;text-align:left;font-size:11.5px;color:#000;vertical-align:middle}th{background:#e6e6e6;font-weight:bold;text-align:center}td.c{text-align:center}tr{break-inside:avoid;page-break-inside:avoid}thead{display:table-header-group}</style></head><body><div class="top-flag"><img src="${IMG_FL}" alt="Drapeau du Sénégal"></div><div class="hdr-grid"><div class="left"><div><b>IA :</b> ${esc(iaVal)}</div><div><b>IEF :</b> ${esc(iefVal)}</div><div><b>CODEC :</b> ${esc(codecVal)}</div><div><b>École :</b> ${esc(ecoleVal)}</div></div><div class="center-title">Liste nominative des élèves</div><div class="right"><div><b>Année scolaire :</b> ${esc(anneeVal)}</div><div><b>Cours :</b> ${esc(coursVal)}</div><div><b>Effectif :</b> ${effVal}</div><div><b>Titulaire :</b> ${esc(titulaireVal)}</div></div></div><table><thead><tr><th>N°</th><th>Nom et prénoms</th><th>Sexe</th><th>Date et lieu de naissance</th><th>État de santé</th><th>Tél. tuteur</th></tr></thead><tbody>${rowsHtml}</tbody></table><script>window.onload=function(){window.print()}<\/script></body></html>`;
-    const w=window.open("","_blank");
-    if(w){w.document.open();w.document.write(docHtml);w.document.close()}
-    else{dl2("liste-eleves-"+(coursVal||"classe")+".html",docHtml,"text/html;charset=utf-8")}
+    const rowsHtml=D.el.map((e,i)=>{const pn=splitNom12(e.nom);return`<tr><td>${i+1}</td><td>${esc(pn.p)}</td><td class="nom-b" style="font-weight:700"><b>${esc(pn.n)}</b></td><td class="c">${esc(e.s||"")}</td><td>${esc(e.dn||"")}</td><td class="c">${esc(e.sante||"")}</td><td class="c">${esc(e.telTuteur||"")}</td></tr>`}).join("")||`<tr><td colspan="7" class="c">Aucun élève pour l’instant.</td></tr>`;
+    const docHtml=`<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><title></title><style>@page{size:A4 portrait;margin:0}*{box-sizing:border-box}body{margin:0;padding:10mm 12mm;background:#fff;color:#000;font:12px/1.25 "Times New Roman",Times,serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}.hdr-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;font-size:12px;line-height:1.4;text-transform:uppercase}.hdr-left{text-align:left}.hdr-right{text-align:left;min-width:210px}.sec-title{font-size:13px;text-transform:uppercase;margin:8px 0 6px;text-align:center}table{width:100%;border-collapse:collapse;table-layout:fixed;margin-top:2px}th,td{border:1px solid #000;padding:3px 5px;font-size:11px;color:#000;vertical-align:middle;word-wrap:break-word;height:23.65pt}th{font-weight:bold;text-align:left;text-transform:uppercase;background:transparent}td{text-align:left}td.c{text-align:center}.sigs{display:flex;justify-content:space-around;margin-top:22px;font-weight:bold;font-size:12px;text-transform:uppercase}.sigs span{text-decoration:underline;text-decoration-thickness:1.5px}tr{break-inside:avoid;page-break-inside:avoid}thead{display:table-header-group}@media print{.np{display:none!important}}</style></head><body><div class="np"><button onclick="window.print()" style="margin:6px 0;padding:8px 14px;font-size:14px;cursor:pointer">🖨️ Imprimer / Enregistrer en PDF</button></div><div class="hdr-top"><div class="hdr-left"><div>IA : <b>${esc(iaVal)}</b></div><div>IEF : <b>${esc(iefVal)}</b></div><div>CODEC : <b>${esc(codecVal)}</b></div><div>ECOLE : <b>${esc(ecoleVal)}</b></div></div><div class="hdr-right"><div>ANNÉE : <b>${esc(anneeVal)}</b></div><div>EFFECTIF : <b>${effVal}</b></div><div>COURS : <b>${esc(coursVal)}</b></div><div>TITULAIRE : <b>${esc(titulaireVal)}</b></div></div></div><div class="sec-title">A/<b>LISTE NOMINATIVE DES ÉLÈVES</b></div><table><colgroup><col style="width:7%"><col style="width:19%"><col style="width:16%"><col style="width:7%"><col style="width:22%"><col style="width:15%"><col style="width:14%"></colgroup><thead><tr><th>N°</th><th>PRÉNOM</th><th>NOM</th><th>SEXE</th><th>DATE ET LIEU DE NAISSANCE</th><th>ÉTAT DE SANTÉ</th><th>TÉL. TUTEUR</th></tr></thead><tbody>${rowsHtml}</tbody></table><div class="sigs"><span>LE MAÎTRE</span><span>LE DIRECTEUR</span></div></body></html>`;
+    dl2("liste-eleves-"+(coursVal||"classe")+".html",docHtml,"text/html;charset=utf-8");
     return;
   }
   if(id==="prt")window.print();
@@ -981,7 +1049,7 @@ document.addEventListener("click",e=>{
   if(id==="csv"){let s="Rang;Nom;Moyenne;Appréciation\n";const r=ranks(per);D.el.forEach(x=>{const m=moy(x.id,per);s+=[r[x.id]||"",x.nom,m==null?"":m.toFixed(2),app(m)].join(";")+"\n"});dl2("resultats-"+per+".csv","\ufeff"+s,"text/csv")}
   if(id==="exp")dl2("gestion-classe-"+(isAdmin()?"admin":curUser.login)+".json",JSON.stringify(D),"application/json")
 });
-function dl2(n,c,t){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([c],{type:t}));a.download=n;a.click()}
+function dl2(n,c,t){const u=URL.createObjectURL(new Blob([c],{type:t}));const a=document.createElement("a");a.href=u;a.download=n;a.style.display="none";document.body.appendChild(a);a.click();setTimeout(()=>{try{document.body.removeChild(a)}catch(x){}URL.revokeObjectURL(u)},2500)}
 
 document.addEventListener("change",e=>{
   if(!curUser)return;
@@ -991,6 +1059,7 @@ document.addEventListener("change",e=>{
   if(t.id==="bs"){bsel=t.value;render()}
   if(t.id==="day"){day=t.value||day;render()}
   if(t.id==="imp"){const r=new FileReader();r.onload=()=>{try{D=JSON.parse(r.result);normalizeCurrentDataset();save();render()}catch(x){alert("Fichier invalide")}};r.readAsText(t.files[0])}
+  if(t.dataset.mv){const el=D.el.find(x=>x.id===t.dataset.mv);if(el){if(t.value)el.mv=t.value;else delete el.mv;const sc=document.querySelector("#v .sc.fzs"),st=sc?sc.scrollTop:0,wy=window.scrollY;save();render();const s2=document.querySelector("#v .sc.fzs");if(s2)s2.scrollTop=st;window.scrollTo(0,wy)}return}
   if(t.dataset.jc!==undefined){D.jc=D.jc||{};D.jc[t.dataset.jc]=t.value;save();render()}
   if(t.dataset.pp){const[id,k]=t.dataset.pp.split("|");D.pp=D.pp||{};(D.pp[id]=D.pp[id]||{})[k]=t.value;save();if(k!=="pr"){const sp=t.nextElementSibling;if(sp)sp.textContent=t.value}if(k==="pr"){t.className=t.value;const sp=t.nextElementSibling;if(sp)sp.textContent=plab(t.value);$("#psw").innerHTML=psum();$("#psn").textContent=psn()}}
   if(t.dataset.i){D.info[t.dataset.i]=t.value;save();nav()}
@@ -1300,7 +1369,7 @@ ensureUsers().then(()=>{
     if(v) v.innerHTML = "";
 
     const htmlOut = "<!DOCTYPE html>\n" + clone.outerHTML;
-    triggerBlobDownload("Ma_Classe_Application-v6.html", htmlOut, "text/html;charset=utf-8");
+    triggerBlobDownload("Ma_Classe_Application-v9.html", htmlOut, "text/html;charset=utf-8");
   }
 
   async function forceInstallOrDesktopShortcut(){
@@ -1390,7 +1459,7 @@ ensureUsers().then(()=>{
     if(dlBtn){
       e.preventDefault();
       exportCleanAppHtml();
-      setShortcutStatus("✅ Fichier autonome « Ma_Classe_Application-v6.html » téléchargé.");
+      setShortcutStatus("✅ Fichier autonome « Ma_Classe_Application-v9.html » téléchargé.");
     }
   });
 
